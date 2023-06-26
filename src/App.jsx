@@ -5,16 +5,17 @@ import TestPage from './pages/TestPage';
 import LoginJoinPage from './pages/LoginJoinPage';
 import { Routes, Route } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage';
+import ProductPage from './pages/ProductPage';
 
 function App() {
 
   return (
-  <Routes>
+    <Routes>
      {/* <Route path="/" element={<MainPage />} /> */}
-     <Route path="/" element={<LoginJoinPage />} />
-    <Route path="login" element={<LoginJoinPage />} />
-    <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+      <Route path="/" element={<ProductPage />} />
+      <Route path="login" element={<LoginJoinPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
