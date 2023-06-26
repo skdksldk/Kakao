@@ -59,23 +59,25 @@ function Footer() {
     <Container>
       <UpperContainer>
         <LinkContainer>
-          {links.map((item) => (
-            <li>
+          {links.map((item, idx) => (
+            <li key={idx}>
               <a href={item.url}>{item.link}</a>
             </li>
           ))}
         </LinkContainer>
         <SocialContainer>
-          {socials.map((item) => (
-            <li>
-              <Button imgSrc={item.imgSrc}/>
+          {socials.map((item, idx) => (
+            <li key={idx}>
+              <Button imgSrc={item.imgSrc} />
             </li>
           ))}
         </SocialContainer>
       </UpperContainer>
       <Divider />
       <LowerContainer>
-        {lowerList.map((item) => <li>{item}</li>)}
+        {lowerList.map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
       </LowerContainer>
     </Container>
   );

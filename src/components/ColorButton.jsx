@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function ColorButton({width, size, color, children}) {
+function ColorButton({width, size, color,onClick,  children}) {
   return (
-    <Container width={width} size={size} color={color}>
+    <Container width={width} size={size} color={color} onClick={onClick}>
      {children}
     </Container>
   )
@@ -29,7 +29,10 @@ const handleSize = (size) => {
 const handleColor = (color) => {
   switch (color) {
     case "gray":
-      return "background-color: #C4C4C4;";
+      return `
+        background-color: #C4C4C4;
+        cursor: default;
+      `;
     case "charcoal":
       return "background-color: #767676;";
     case "white":
@@ -52,7 +55,8 @@ const Container = styled.button`
   border-radius: 5px;
   color: #FFFFFF;
   font-weight: 700;
-
+  flex-shrink: 0;
+  
   ${({ width }) => `width: ${width || '100%'};`}
   ${({ size }) => handleSize(size)}
   ${({ color }) => handleColor(color)}
