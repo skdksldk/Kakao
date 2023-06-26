@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgLogo from '../../public/assets/kakao.jpg';
 import LoginForm from '../components/LoginForm';
 import LoginFooter from '../components/LoginFooter';
 import JoinForm from '../components/JoinForm';
 import JoinFooter from '../components/JoinFooter';
+
+const checkIdRegex = (id) => {
+  const idRegex = /^[a-zA-Z0-9]{1,20}$/;
+  return idRegex.test(id);
+};
 
 function LoginJoinPage() {
   const [info, setInfo] = useState({
@@ -13,9 +18,8 @@ function LoginJoinPage() {
   });
 
   const changeUserType = (type) => {
-    setInfo({...info, userType: type});
+    setInfo({ ...info, userType: type });
   };
-
   const changePageType = (type) => {
     setInfo({ ...info, pageType: type });
   };
@@ -25,9 +29,48 @@ function LoginJoinPage() {
     pw: '',
     pwCheck: '',
     name: '',
-    phone: '',
-    email: '',
+    phone: '010',
+    email: '@',
+    sellerNum: '',
+    storeName: '',
   });
+
+  useEffect(() => {
+    if (info.userType === 'SELLER') {
+      if (joinInfo.id.length === 0 ||
+        joinInfo.pw.length === 0 ||
+        joinInfo.pwCheck.length === 0 ||
+        joinInfo.name.length === 0 ||
+        joinInfo.phone.length === 3 ||
+        joinInfo.email.length === 1 || 
+        joinInfo.sellerNum.length === 0 ||
+        joinInfo.storeName.length === 0 ||
+        termCheck === false)
+        setCanJoin(false);
+      else
+        setCanJoin(true);
+    } else {
+      if (joinInfo.id.length === 0 ||
+        joinInfo.pw.length === 0 ||
+        joinInfo.pwCheck.length === 0 ||
+        joinInfo.name.length === 0 ||
+        joinInfo.phone.length === 3 ||
+        joinInfo.email.length === 1 || 
+        termCheck === false)
+        setCanJoin(false);
+      else
+        setCanJoin(true);
+    }
+  }, [joinInfo.id, 
+    joinInfo.pw, 
+    joinInfo.pwCheck,
+    joinInfo.name, 
+    joinInfo.phone,
+    joinInfo.email,
+    joinInfo.sellerNum,
+    joinInfo.storeName,
+    termCheck
+  ]);
 
   const [msgJoin, setMsgJoin] = useState({
     id: null,
@@ -36,11 +79,27 @@ function LoginJoinPage() {
     name: null,
     phone: null,
     email: null,
+    sellerNum: null,
+    storeName: null,
   });
 
- 
+  const [canJoin, setCanJoin] = useState(false);
+  const [termCheck, setTermCheck] = useState(false);
 
-  const checkEmail = () => {};
+  const checkId = () => {
+    if (!checkIdRegex(joinInfo.id)) {
+      setMsgJoin({
+        ...msgJoin,
+        id: {
+          msgContent:
+            '20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.',
+          msgColor: 'red',
+        },
+      });
+      return;
+    }
+    checkIdDup();
+  }
 
   const checkIdDup = async () => {
     const url = 'https://openmarket.weniv.co.kr';
@@ -55,7 +114,7 @@ function LoginJoinPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data?.username?.includes('해당 사용자 아이디는 이미 존재합니다.')) {
+        if (data.username?.includes('해당 사용자 아이디는 이미 존재합니다.')) {
           setMsgJoin({
             ...msgJoin,
             id: {
@@ -92,12 +151,66 @@ function LoginJoinPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-       
+        console.log(data);
       });
   };
 
   const checkJoinSeller = () => {
-    console.log('checkJoinSeller');
+    const url = 'https://openmarket.weniv.co.kr';
+    fetch(`${url}/accounts/signup_seller/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: joinInfo.id,
+        password: joinInfo.pw,
+        password2: joinInfo.pwCheck,
+        phone_number: joinInfo.phone,
+        name: joinInfo.name,
+        company_registration_number: joinInfo.sellerNum,
+        store_name: joinInfo.storeName,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        
+        // phone number
+        if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
+          setMsgJoin({...msgJoin, phone: {
+            msgContent: '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
+            msgColor: 'red',
+          }});
+        } else if (data.phone_number?.includes('해당 사용자 전화번호는 이미 존재합니다.')) {
+          setMsgJoin({...msgJoin, phone: {
+            msgContent: '해당 사용자 전화번호는 이미 존재합니다.',
+            msgColor: 'red',
+          }});
+        } else {
+          setMsgJoin({...msgJoin, phone: null});
+        }
+
+        // company registration number
+        if (data.company_registration_number?.includes('해당 사업자등록번호는 이미 존재합니다.')) {
+          setMsgJoin({...msgJoin, sellerNum: {
+            msgContent: '해당 사업자등록번호는 이미 존재합니다.',
+            msgColor: 'red',
+          }});
+        } else {
+          setMsgJoin({...msgJoin, sellerNum: null});
+        }
+
+        // company name
+        if (data.company_registration_number?.includes('해당 스토어이름은 이미 존재합니다.')) {
+          setMsgJoin({...msgJoin, storeName: {
+            msgContent: '해당 스토어이름은 이미 존재합니다.',
+            msgColor: 'red',
+          }});
+        } else {
+          setMsgJoin({...msgJoin, storeName: null});
+        }
+      });
   };
 
   return (
@@ -113,7 +226,7 @@ function LoginJoinPage() {
           </button>
         </FormType>
         <FormContent>
-        {info.pageType === 'login' ? (
+          {info.pageType === 'login' ? (
             <LoginForm userType={info.userType} />
           ) : (
             <JoinForm
@@ -122,7 +235,8 @@ function LoginJoinPage() {
               setJoinInfo={setJoinInfo}
               msgJoin={msgJoin}
               setMsgJoin={setMsgJoin}
-              checkIdDup={checkIdDup}
+              checkId={checkId}
+              checkIdRegex={checkIdRegex}
             />
           )}
         </FormContent>
@@ -134,6 +248,9 @@ function LoginJoinPage() {
           onJoinClick={
             info.userType === 'BUYER' ? checkJoinBuyer : checkJoinSeller
           }
+          canJoin={canJoin}
+          termCheck={termCheck}
+          setTermCheck={setTermCheck}
         />
       )}
     </Container>
@@ -148,6 +265,7 @@ const Container = styled.div`
   align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
+
   & > img {
     width: 230px;
   }
@@ -171,6 +289,7 @@ const FormType = styled.article`
   position: relative;
   top: 20px;
   display: flex;
+
   button {
     padding-top: 20px;
     padding-bottom: 40px;
@@ -183,6 +302,7 @@ const FormType = styled.article`
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+
   ${({ selected }) => `
     button:nth-child(${1 + +(selected === 'SELLER')}) {
       z-index: 20;
@@ -193,6 +313,7 @@ const FormType = styled.article`
       background: #F2F2F2;
     }
   `}
+
   &::after {
     content: '';
     position: absolute;

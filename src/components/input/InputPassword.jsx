@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import InputBox from './InputBox';
 import Message from './Message';
 
-function InputPassword({ ...props }) {
+function InputPassword({ isValid, ...props }) {
   const { title, msgInfo } = props;
 
   return (
     <Container>
       <Title>{title}</Title>
-      <InputBox type="password" {...props} />
+      <InputBox type="password" isValid={isValid} {...props} />
       {msgInfo && (
         <Message msgColor={msgInfo.msgColor} msgContent={msgInfo.msgContent} />
       )}
@@ -27,7 +27,6 @@ const Container = styled.article`
   input {
     margin-top: 10px;
   }
-
   & + article {
     margin-top: 16px;
   }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputBox from './InputBox';
+import Message from './Message';
 import SelectBox from './SelectBox';
 
 function InputPhone({ ...props }) {
@@ -47,6 +48,7 @@ export default InputPhone;
 const Container = styled.article`
   display: flex;
   flex-direction: column;
+
   div {
     margin-top: 10px;
     display: flex;
@@ -66,4 +68,3 @@ const Title = styled.p`
   font-size: 16px;
   line-height: 20px;
 `;
-

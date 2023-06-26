@@ -4,30 +4,31 @@ import InputBox from './InputBox';
 import ColorButton from '../ColorButton';
 import Message from './Message';
 
-function InputWithBtn({ ...props }) {
-  const { title, btnMsg, msgInfo, onBtnClick } = props;
+const InputWithBtn = React.forwardRef((props, ref) => {
+  const { title, btnMsg, msgInfo, BtnClick } = props;
 
   return (
     <Container>
       <Title>{title}</Title>
       <div>
-        <InputBox {...props} />
-        <ColorButton width="122px" size="MS" onClick={onBtnClick}>
+        <InputBox ref={ref} {...props} />
+        <ColorButton width="122px" size="MS" onClick={BtnClick}>
           {btnMsg}
         </ColorButton>
       </div>
       {msgInfo && (
-       <Message msgColor={msgInfo.msgColor} msgContent={msgInfo.msgContent} />
+        <Message msgColor={msgInfo.msgColor} msgContent={msgInfo.msgContent} />
       )}
     </Container>
   );
-}
+});
 
 export default InputWithBtn;
 
 const Container = styled.article`
   display: flex;
   flex-direction: column;
+
   div {
     margin-top: 10px;
     display: flex;
@@ -45,4 +46,3 @@ const Title = styled.p`
   font-size: 16px;
   line-height: 20px;
 `;
-

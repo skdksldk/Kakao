@@ -4,28 +4,23 @@ import ColorButton from './ColorButton';
 import IconUnchecked from '../../public/assets/check-box.svg';
 import IconChecked from '../../public/assets/check-fill-box.svg';
 
-function JoinFooter({ onJoinClick }) {
-  const [canJoin, setCanJoin] = useState(false);
-  const toggleCanJoin = () => {
-    setCanJoin(!canJoin);
-  };
-
+function JoinFooter({ onJoinClick, canJoin, termCheck, setTermCheck }) {
   return (
     <Container>
       <div>
-      <Checkbox type="checkbox" id="checkTerms"  onClick={toggleCanJoin} />
+        <Checkbox type="checkbox" id="checkTerms" onChange={() => setTermCheck(!termCheck)} />
         <label htmlFor="checkTerms" />
         <p>
-          호두샵의 <span>이용약관</span> 및 <span>개인정보처리방침</span>에 
-          대한 내용을 확인하였고 동의합니다.
+          호두샵의 <span>이용약관</span> 및 <span>개인정보처리방침</span>에 대한
+          내용을 확인하였고 동의합니다.
         </p>
       </div>
-      <ColorButton 
-         size="M" 
-         color={canJoin ? "green" : "gray"}
-         onClick={onJoinClick}
+      <ColorButton
+        size="M"
+        color={canJoin ? 'green' : 'gray'}
+        onClick={canJoin ? onJoinClick : () => {}}
       >
-          가입하기
+        가입하기
       </ColorButton>
     </Container>
   );
@@ -47,6 +42,7 @@ const Container = styled.div`
   @media screen and (max-width: 576px) {
     max-width:100%;
   }
+
   div {
     display: flex;
     align-items: flex-start;

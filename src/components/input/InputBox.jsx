@@ -6,7 +6,7 @@ import ImgInvalid from '../../../public/assets/icon-check-off.svg';
 const InputBox = React.forwardRef((props, ref) => {
   return (
     <>
-      <Input {...props} ref={ref}/>
+      <Input {...props} ref={ref} />
       {props.hasValidCheck && <IconValid isValid={props.isValid} />}
     </>
   );
@@ -23,6 +23,7 @@ const Input = styled.input`
   outline: none;
   font-size: 16px;
   line-height: 20px;
+
   &:focus {
     border: 1px solid #21bf48;
   }
@@ -36,7 +37,7 @@ const Input = styled.input`
 const IconValid = styled.img`
   position: absolute;
   content: url(${({ isValid }) => (isValid ? ImgValid : ImgInvalid)});
-  bottom: 13px;
+  top: 43px;
   right: 13px;
   width: 28px;
   height: 28px;
