@@ -12,8 +12,8 @@ function App() {
 
   return (
     <Routes>
-    <Route path="/" element={<MainPage />} />
-      <Route path="products" element={<ProductPage />} />
+      <Route path="/" element={<MainPage />} />
+      <Route path="product:/id" element={<ProductPage />} /> 
       <Route path="login" element={<LoginPage />} />
       <Route path="join" element={<JoinPage />} />
       <Route path="*" element={<NotFoundPage />} />
