@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgLogo from '../../public/assets/kakao.jpg';
-import LoginForm from '../components/LoginForm';
-import LoginFooter from '../components/LoginFooter';
+import LoginForm from '../components/login/LoginForm';
+import LoginFooter from '../components/login/LoginFooter';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import InputText from './input/InputText';
-import ColorButton from './ColorButton';
+import InputText from '../input/InputText';
+import ColorButton from '../button/ColorButton';
 import { useNavigate } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 

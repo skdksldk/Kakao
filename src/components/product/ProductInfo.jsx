@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProductSummary from './ProductSummary';
-import Product3 from '../../public/assets/product-3.jpg';
+import Product3 from '../../../public/assets/product-3.jpg';
 import ProductDetail from './ProductDetail';
 
 function ProductInfo() {
