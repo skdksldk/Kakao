@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import IconButton from './button/IconButton';
 import ImgLogo from '../../public/assets/kakao.jpg';
@@ -6,12 +6,22 @@ import SearchBar from './SearchBar';
 import ImgCart from '../../public/assets/icon-shopping-cart.svg';
 import ImgUser from '../../public/assets/icon-user.svg';
 import ImgBag from '../../public/assets/icon-shopping-bag.svg';
-import ColorIconButton from './button/ColorIconButton';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import SellerButton from './button/SellerButton';
 
-function Header({ buyer }) {
+function Header() {
   const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
+  const isSeller = localStorage.getItem('userType') === 'SELLER' ? true : false;
+
+  const onMypageClick = () => {
+    navigate('/mypage');
+  };
+  const onLogoutClick = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <Container>
@@ -20,9 +30,29 @@ function Header({ buyer }) {
         <SearchBar />
         </SubContainer>
       <SubContainer  right>
-       {buyer || <IconButton src={ImgCart}>장바구니</IconButton>}
-       <StyledLink to="/login"><IconButton src={ImgUser}>마이페이지</IconButton></StyledLink>
-        {buyer && <ColorIconButton iconSrc={ImgBag}>판매자 센터</ColorIconButton>}
+       {!isSeller &&  <IconButton src={ImgCart}>장바구니</IconButton>}
+       {localStorage.getItem('token') ? (
+          <>
+            <IconButton
+              src={ImgUser}
+              onClick={() => setShowMenu(!showMenu)}
+              children="마이페이지"
+              />
+              {showMenu && (
+                <MypageMenu isSeller={isSeller}>
+                  <li onClick={onMypageClick}>마이페이지</li>
+                  <li onClick={onLogoutClick}>로그아웃</li>
+                </MypageMenu>
+              )}
+          </>
+        ) : (
+          <IconButton
+            src={ImgUser}
+            onClick={() => navigate('/login')}
+            children="로그인"
+          />
+        )}
+         {isSeller && <SellerButton iconSrc={ImgBag} children="판매자 센터" />}
       </SubContainer>
     </Container>
   );
@@ -49,14 +79,18 @@ const Container = styled.header`
 `;
 
 const SubContainer = styled.article`
-  ${({ left }) => left && `
+   ${({ left }) =>
+    left &&
+    `
     width: 600px;
     @media screen and (max-width: 768px) {
       width: 350px;
     }
   `}
 
-  ${({ right }) => right && `
+  ${({ right }) =>
+  right &&
+  `
   flex-shrink: 0;
 `}
  
@@ -73,10 +107,6 @@ const SubContainer = styled.article`
   }
 `;
 
-const StyledLink = styled(Link)`
-  margin-left: 20px;
-`;
-
 
 const Logo = styled.img`
   width: 124px;
@@ -84,5 +114,47 @@ const Logo = styled.img`
   cursor: pointer;
   @media screen and (max-width: 768px) {
     width: 80px;
+  }
+`;
+
+const MypageMenu = styled.ul`
+  position: absolute;
+  top: 90px;
+  right: 15px;
+  width: 120px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  li {
+    padding: 2px 5px;
+    text-align: center;
+    color: #767676;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all 0.5s;
+    cursor: pointer;
+    & + li {
+      margin-top: 10px;
+    }
+    &:hover {
+      color: #000;
+      border: 1px solid #767676;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    top: 75px;
+    right: 12px;
+    width: 110px;
+    li {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 576px) {
+    top: 66px;
+    right: 10px;
+    width: 95px;
   }
 `;
