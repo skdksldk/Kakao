@@ -89,7 +89,7 @@ function JoinPage() {
       return;
     }
     checkIdDup();
-  }
+  };
 
   const checkIdDup = async () => {
     const url = 'https://openmarket.weniv.co.kr';
@@ -102,7 +102,10 @@ function JoinPage() {
         username: joinInfo.id,
       }),
     })
-      .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error('http 에러');
+      return res.json();
+    })
       .then((data) => {
         if (data.username?.includes('해당 사용자 아이디는 이미 존재합니다.')) {
           setMsgJoin({
@@ -121,7 +124,8 @@ function JoinPage() {
             },
           });
         }
-      });
+      })
+      .catch((e) => alert(e.message));
   };
 
   const checkJoinBuyer = async () => {
@@ -139,10 +143,14 @@ function JoinPage() {
         name: joinInfo.name,
       }),
     })
-      .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error('http 에러');
+      return res.json();
+    })
       .then((data) => {
         console.log(data);
-      });
+      })
+      .catch((e) => alert(e.message));
   };
 
   const checkJoinSeller = () => {
@@ -162,45 +170,72 @@ function JoinPage() {
         store_name: joinInfo.storeName,
       }),
     })
-      .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error('http 에러');
+      return res.json();
+    })
       .then((data) => {
         console.log(data);
         
         // phone number
         if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
-          setMsgJoin({...msgJoin, phone: {
-            msgContent: '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
-            msgColor: 'red',
-          }});
-        } else if (data.phone_number?.includes('해당 사용자 전화번호는 이미 존재합니다.')) {
-          setMsgJoin({...msgJoin, phone: {
-            msgContent: '해당 사용자 전화번호는 이미 존재합니다.',
-            msgColor: 'red',
-          }});
+          setMsgJoin({
+            ...msgJoin,
+            phone: {
+              msgContent:
+                '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
+              msgColor: 'red',
+            },
+          });
+        } else if (
+          data.phone_number?.includes('해당 사용자 전화번호는 이미 존재합니다.')
+        ) {
+          setMsgJoin({
+            ...msgJoin,
+            phone: {
+              msgContent: '해당 사용자 전화번호는 이미 존재합니다.',
+              msgColor: 'red',
+            },
+          });
         } else {
           setMsgJoin({...msgJoin, phone: null});
         }
 
         // company registration number
-        if (data.company_registration_number?.includes('해당 사업자등록번호는 이미 존재합니다.')) {
-          setMsgJoin({...msgJoin, sellerNum: {
-            msgContent: '해당 사업자등록번호는 이미 존재합니다.',
-            msgColor: 'red',
-          }});
+        if (
+          data.company_registration_number?.includes(
+            '해당 사업자등록번호는 이미 존재합니다.',
+          )
+        ) {
+          setMsgJoin({
+            ...msgJoin,
+            sellerNum: {
+              msgContent: '해당 사업자등록번호는 이미 존재합니다.',
+              msgColor: 'red',
+            },
+          });
         } else {
           setMsgJoin({...msgJoin, sellerNum: null});
         }
 
         // company name
-        if (data.company_registration_number?.includes('해당 스토어이름은 이미 존재합니다.')) {
-          setMsgJoin({...msgJoin, storeName: {
-            msgContent: '해당 스토어이름은 이미 존재합니다.',
-            msgColor: 'red',
-          }});
+        if (
+          data.company_registration_number?.includes(
+            '해당 스토어이름은 이미 존재합니다.',
+          )
+        ) {
+          setMsgJoin({
+            ...msgJoin,
+            storeName: {
+              msgContent: '해당 스토어이름은 이미 존재합니다.',
+              msgColor: 'red',
+            },
+          });
         } else {
           setMsgJoin({...msgJoin, storeName: null});
         }
-      });
+      })
+      .catch((e) => alert(e.message));
   };
 
   return (
@@ -208,12 +243,8 @@ function JoinPage() {
       <img src={ImgLogo} />
       <FormContainer>
         <FormType selected={userType}>
-          <button onClick={() => setUserType('BUYER')}>
-            구매회원가입
-          </button>
-          <button onClick={() => setUserType('SELLER')}>
-            판매회원가입
-          </button>
+          <button onClick={() => setUserType('BUYER')}>구매회원가입</button>
+          <button onClick={() => setUserType('SELLER')}>판매회원가입</button>
         </FormType>
         <FormContent>
         <JoinForm
@@ -228,9 +259,7 @@ function JoinPage() {
         </FormContent>
       </FormContainer>
       <JoinFooter
-        onJoinClick={
-          userType === 'BUYER' ? checkJoinBuyer : checkJoinSeller
-        }
+        onJoinClick={userType === 'BUYER' ? checkJoinBuyer : checkJoinSeller}
         canJoin={canJoin}
         termCheck={termCheck}
         setTermCheck={setTermCheck}
