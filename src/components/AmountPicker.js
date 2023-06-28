@@ -31,6 +31,7 @@ const Container = styled.article`
   overflow: hidden;
   display: flex;
   width: 150px;
+  height: 50px;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
   div {
