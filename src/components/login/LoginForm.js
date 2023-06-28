@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputText from '../input/InputText';
 import ColorButton from '../button/ColorButton';
 import regeneratorRuntime from 'regenerator-runtime';
 
 const LoginForm = ({ userType }) => {
+  const navigate = useNavigate();
   const idRef = useRef();
   const pwRef = useRef();
 
@@ -61,11 +63,15 @@ const LoginForm = ({ userType }) => {
         localStorage.setItem('id', loginInfo.id);
         localStorage.setItem('token', data.token);
         localStorage.setItem('userType', userType);
-        navigate(-1);
+        navigate(-1, { replace: true });
       }
     })
     .catch((e) => alert(e.message));
 
+  };
+
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') checkLogin();
   };
 
   return (
@@ -85,6 +91,7 @@ const LoginForm = ({ userType }) => {
         value={loginInfo.pw}
         onChange={handleInputChange}
         ref={pwRef}
+        onKeyPress={handleEnter}
       />
       <Message show={message.show}>{message.content}</Message>
       <ColorButton onClick={checkLogin}>로그인</ColorButton>
