@@ -28,8 +28,8 @@ const handleSize = (size) => {
 
 const handleColor = (color) => {
   switch (color) {
-    case 'green':
-      return 'background-color: #21BF48;';
+    case 'orange':
+      return 'background-color: #ff7f00';
     case 'gray':
       return `
         background-color: #C4C4C4;
@@ -66,5 +66,5 @@ const Container = styled.button`
 ColorButton.defaultProps = {
   width: '100%',
   size: 'M',
-  color: 'green',
+  color: 'orange',
 };

@@ -7,7 +7,7 @@ import JoinPage from './pages/JoinPage';
 import { Routes, Route } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductPage from './pages/ProductPage';
-
+import CartPage from './pages/CartPage';
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
       <Route path="product:/id" element={<ProductPage />} /> 
       <Route path="login" element={<LoginPage />} />
       <Route path="join" element={<JoinPage />} />
+      <Route path="cart" element={<CartPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

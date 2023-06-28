@@ -30,7 +30,11 @@ const Header = () => {
         <SearchBar />
         </SubContainer>
       <SubContainer  right>
-       {!isSeller &&  <IconButton src={ImgCart}>장바구니</IconButton>}
+      {!isSeller && (
+          <IconButton src={ImgCart} onClick={() => navigate('/cart')}>
+            장바구니
+          </IconButton>
+        )}
        {localStorage.getItem('token') ? (
           <>
             <IconButton

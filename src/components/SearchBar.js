@@ -20,7 +20,8 @@ const Container = styled.article`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
-  border: 2px solid #21bf48;
+  // border: 2px solid #21bf48;
+  border: 2px solid #ff7f00;
   border-radius: 50px;
   
   input {

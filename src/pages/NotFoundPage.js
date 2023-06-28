@@ -45,7 +45,7 @@ const Container = styled.section`
   display: flex;
   width: 750px;
   @media screen and (max-width: 1024px) {
-    margin-top:30%;
+    margin-top:10%;
     transform: translate(-50%, -50%);
     display: flex;
     width: 100%;
@@ -85,7 +85,7 @@ const TextContainer = styled.section`
     color: #767676;
   }
   @media screen and (max-width: 1024px) {
-    margin-top: 50px;
+    margin-top: -150px;
     margin-left: 120px;
     transform: translate(-50%, -50%);
     display: flex;
