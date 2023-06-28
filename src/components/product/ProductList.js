@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
+import { API_URL } from '../../util/api';
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -11,22 +12,21 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const url = 'https://openmarket.weniv.co.kr';
-    fetch(`${url}/products/`, {
+    fetch(`${API_URL}/products/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    .then((res) => {
-      if (!res.ok) throw new Error('http 에러');
-      return res.json();
-    })
-    .then((data) => {
-      setProducts(data.results);
-      setLoading(false);
-    })
-    .catch((e) => alert(e.message));
+      .then((res) => {
+        if (!res.ok) throw new Error('http 에러');
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data.results);
+        setLoading(false);
+      })
+      .catch((e) => alert(e.message));
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const ProductList = () => {
 
   return (
     <>
-        {loading ? (
+      {loading ? (
         <Loading />
       ) : products.length === 0 ? (
         <ErrorMessage emoji="😭" message="등록된 상품이 없어요!" />
@@ -65,12 +65,12 @@ const Container = styled.section`
   padding: 80px 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 30px;
   grid-row-gap: 80px;
+  grid-column-gap: 30px;
   @media screen and (max-width: 1024px) {
     padding: 50px 40px;
-    grid-row-gap: 60px;
     grid-template-columns: 1fr 1fr;
+    grid-row-gap: 60px;
   }
   @media screen and (max-width: 768px) {
     padding: 40px 20px;
@@ -84,4 +84,3 @@ const Container = styled.section`
     grid-column-gap: 10px;
   }
 `;
-

@@ -67,8 +67,7 @@ const JoinForm = ({
   const pwMatchCheck = () => {
     if (pw === pwCheck) {
       setMsgJoin({ ...msgJoin, pwCheck: null });
-      if (checkPwRegex(pwCheck))
-        setIsPwCheckValid(true);
+      if (checkPwRegex(pwCheck)) setIsPwCheckValid(true);
     } else {
       setMsgJoin({
         ...msgJoin,
@@ -89,8 +88,7 @@ const JoinForm = ({
     }
 
     pwRegexCheck();
-    if (pwCheck !== '')
-      pwMatchCheck();
+    if (pwCheck !== '') pwMatchCheck();
   };
 
   // pwCheck

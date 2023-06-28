@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CarouselIndicator from './CarouselIndicator';
+import { carouselImgs } from '../util/carousel';
 import BtnPrev from '../../public/assets/arrow-left.svg';
 import BtnNext from '../../public/assets/arrow-right.svg';
-import { carouselImgs } from '../util/carousel';
-
-
 
 const Carousel = () => {
-
   const [activeIdx, setActiveIdx] = useState(0);
-
 
   return (
     <Container>
       <ImageContainer activeIdx={activeIdx}>
-      {carouselImgs.map((img, idx) => (
+        {carouselImgs.map((img, idx) => (
           <Image key={idx} src={img.src} alt={img.alt} />
         ))}
       </ImageContainer>
       <IndicatorContainer activeIdx={activeIdx}>
         {carouselImgs.map((img, idx) => (
-           <CarouselIndicator key={idx} onClick={() => setActiveIdx(idx)} />
+          <CarouselIndicator key={idx} onClick={() => setActiveIdx(idx)} />
         ))}
       </IndicatorContainer>
-      <ButtonPrev onClick={() => {
-        if (activeIdx === 0) return;
-        setActiveIdx(activeIdx - 1)
-      }}/>
-      <ButtonNext onClick={() => {
-        if (activeIdx === carouselImgs.length - 1) return;
-        setActiveIdx(activeIdx + 1)
-      }}/>
+      <ButtonPrev
+        onClick={() => {
+          if (activeIdx === 0) return;
+          setActiveIdx(activeIdx - 1);
+        }}
+      />
+      <ButtonNext
+        onClick={() => {
+          if (activeIdx === carouselImgs.length - 1) return;
+          setActiveIdx(activeIdx + 1);
+        }}
+      />
     </Container>
   );
 };
@@ -44,6 +44,7 @@ const Container = styled.section`
   width: 100%;
   height: 500px;
   overflow: hidden;
+
   button {
     z-index: 10;
     padding: 0;
@@ -60,7 +61,7 @@ const ImageContainer = styled.section`
   height: 500px;
   display: flex;
   transition: all 1s;
-  transform: ${(props) => `translateX(calc(-${props.activeIdx} * 100%))`}
+  transform: ${(props) => `translateX(calc(-${props.activeIdx} * 100%))`};
 `;
 
 const Image = styled.div`
@@ -107,7 +108,7 @@ const IndicatorContainer = styled.article`
   left: 50%;
   transform: translateX(-50%);
   bottom: 30px;
-  
+
   button:nth-child(${(props) => props.activeIdx + 1}) {
     background-color: rgba(255, 255, 255, 0.8);
   }

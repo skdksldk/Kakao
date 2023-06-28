@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconOn from '../../../public/assets/check-circle-on.svg';
-import IconOff from '../../../public/assets/check-circle-off.svg';
 
 const CartNothing = () => {
   return (
@@ -21,11 +19,13 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h2 {
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
   }
+
   p {
     margin-top: 17px;
     font-size: 14px;

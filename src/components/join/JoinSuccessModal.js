@@ -45,10 +45,12 @@ const ModalContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   padding: 40px 50px;
   background-color: #fff;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
+
   button {
     margin-top: 30px;
   }

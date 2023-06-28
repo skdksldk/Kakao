@@ -1,42 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import AmountPicker from '../AmountPicker';
 import IconOn from '../../../public/assets/check-circle-on.svg';
 import IconOff from '../../../public/assets/check-circle-off.svg';
-import AmountPicker from '../AmountPicker';
 import IconDelete from '../../../public/assets/icon-delete.svg';
-import ProductImg from '../../../public/assets/product-1.jpg';
+import IconLoading from '../../../public/assets/icon-loading.png';
 import ColorButton from '../button/ColorButton';
+import { API_URL } from '../../util/api';
 
-const CartItem = () => {
-  const seller_name = '백엔드글로벌';
-  const product_name = '딥러닝 개발자 무릎 담요';
-  const image = ProductImg;
-  const price = 17500;
-  const shipping_method='PARCEL';
-  const shipping_fee=0;
+const CartItem = ({ product_id, quantity, onRemove }) => {
+  const [itemInfo, setItemInfo] = useState({
+    seller_store: '로딩중...',
+    product_name: '로딩중...',
+    image: IconLoading,
+    price: 0,
+    shipping_method: 'DELIVERY',
+    shipping_fee: 0,
+  });
+
+  const getItemInfo = async () => {
+    fetch(`${API_URL}/products/${product_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        // if (!res.ok) throw new Error('http 에러');
+        return res.json();
+      })
+      .then((data) => {
+        setItemInfo(data);
+      })
+      .catch((e) => alert(e.message));
+  };
+
+  useEffect(() => {
+    getItemInfo();
+  }, []);
+
   return (
     <Container>
-      <DeleteButton src={IconDelete} />
+      <DeleteButton src={IconDelete} onClick={onRemove} />
       <Checkbox type="checkbox" id={'checkItem'} />
       <label htmlFor={'checkItem'} />
-      <ItemImg src={image} />
+      <ItemImg src={itemInfo.image} />
       <ItemInfoContainer>
-        <GrayText>{seller_name}</GrayText>
-        <ProductText>{product_name}</ProductText>
-        <PriceText>{price.toLocaleString('ko-KR')}원</PriceText>
+        <GrayText>{itemInfo.seller_store}</GrayText>
+        <ProductText>{itemInfo.product_name}</ProductText>
+        <PriceText>{itemInfo.price.toLocaleString('ko-KR')}원</PriceText>
         <GrayText>
-          {shipping_method === 'PARCEL' ? '소포' : '택배'}배송 /{' '}
-          {shipping_fee === 0
+          {itemInfo.shipping_method === 'PARCEL' ? '소포' : '택배'}배송 /{' '}
+          {itemInfo.shipping_fee === 0
             ? '무료배송'
-            : `${shipping_fee.toLocaleString('ko-KR')}원`}
+            : `${itemInfo.shipping_fee.toLocaleString('ko-KR')}원`}
         </GrayText>
       </ItemInfoContainer>
       <AmountContainer>
-        <AmountPicker amount={1} stock={5} />
+        <AmountPicker amount={1} stock={quantity} />
       </AmountContainer>
       <PriceContainer>
-        <p>{price.toLocaleString('ko-KR')}원</p>
-        <ColorButton size={"S"} width={"130px"}>주문하기</ColorButton>
+        <p>{itemInfo.price.toLocaleString('ko-KR')}원</p>
+        <ColorButton size={'S'} width={'130px'}>
+          주문하기
+        </ColorButton>
       </PriceContainer>
     </Container>
   );
@@ -45,15 +72,20 @@ const CartItem = () => {
 export default CartItem;
 
 const Container = styled.article`
-  width: 1280px;
-  padding-top: 20px;
-  padding-bottom: 20px;
   display: flex;
   align-items: center;
   position: relative;
+
+  width: 1280px;
   height: 200px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
+
+  & + article {
+    margin-top: 10px;
+  }
   @media screen and (max-width: 1024px) {
     width:100%;
   }
@@ -64,8 +96,6 @@ const Container = styled.article`
     width:100%;
   }
 `;
-
-
 
 const Checkbox = styled.input`
   display: none;
@@ -141,7 +171,7 @@ const AmountContainer = styled.div`
     width:100%;
   }
   @media screen and (max-width: 576px) {
-    margin-top:6%;
+    
     width:100%;
   }
 `;
@@ -155,7 +185,7 @@ const PriceContainer = styled.div`
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
-    color: #EB5757;
+    color: #eb5757;
   }
   button {
     margin-top: 26px;

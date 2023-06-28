@@ -27,11 +27,11 @@ const Footer = () => {
         </SocialContainer>
       </UpperContainer>
       <Divider />
-       <InfoContainer>
+      <InfoContainer>
         {companyInfo.map((item, idx) => (
           <li key={idx}>{item}</li>
         ))}
-       </InfoContainer>
+      </InfoContainer>
     </Container>
   );
 };
@@ -39,9 +39,9 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.footer`
+  padding: 60px;
   display: flex;
   flex-direction: column;
-  padding: 60px;
   background-color: #f2f2f2;
   @media screen and (max-width: 768px) {
     padding: 20px;

@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 const MainPage = () => {
   return (
     <Container>
-     <Header />
+      <Header />
       <Carousel />
       <ProductList />
       <Footer />

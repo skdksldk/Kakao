@@ -18,10 +18,12 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h2 {
     font-size: 16px;
     line-height: 20px;
   }
+
   p {
     ${({ color }) => {
       switch (color) {
@@ -34,6 +36,7 @@ const Container = styled.article`
     margin-top: 12px;
     font-size: 16px;
     line-height: 20px;
+
     span {
       font-weight: 700;
       font-size: 24px;

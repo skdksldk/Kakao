@@ -9,7 +9,7 @@ const CartFooter = () => {
   return (
     <Container>
       <PriceContainer>
-       <TextPrice title={'총 상품금액'} price={46500} />
+        <TextPrice title={'총 상품금액'} price={46500} />
         <img src={IconMinus} />
         <TextPrice title={'상품 할인'} price={0} />
         <img src={IconPlus} />

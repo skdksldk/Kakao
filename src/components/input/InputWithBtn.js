@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import InputBox from './InputBox';
 import ColorButton from '../button/ColorButton';
+import InputBox from './InputBox';
 import Message from './Message';
 
 const InputWithBtn = React.forwardRef((props, ref) => {

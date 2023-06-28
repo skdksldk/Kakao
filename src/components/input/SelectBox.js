@@ -9,17 +9,13 @@ const SelectBox = ({ phoneFirst, onSelect }) => {
   const toggleIsOn = () => {
     setIsOn(!isOn);
   };
- 
+
   return (
     <Container>
       <Button onClick={toggleIsOn} isOn={isOn}>
         {phoneFirst}
       </Button>
-      <DropdownPhone
-        isOn={isOn}
-        toggleIsOn={toggleIsOn}
-        onSelect={onSelect}
-      />
+      <DropdownPhone isOn={isOn} toggleIsOn={toggleIsOn} onSelect={onSelect} />
     </Container>
   );
 };
@@ -40,13 +36,14 @@ const Button = styled.button`
   outline: none;
   font-size: 16px;
   line-height: 20px;
+
   &:focus {
     border: 1px solid #21bf48;
   }
 
   ${({ borderRed }) =>
-  borderRed &&
-  `
+    borderRed &&
+    `
     border: 1px solid #EB5757;
   `}
 
@@ -57,7 +54,7 @@ const Button = styled.button`
     right: 14px;
     width: 22px;
     height: 22px;
-    background-image: url(${({isOn}) => (isOn ? IconUp : IconDown)});
+    background-image: url(${({ isOn }) => (isOn ? IconUp : IconDown)});
     background-size: 22px 22px;
   }
 `;

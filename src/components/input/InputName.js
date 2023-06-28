@@ -22,6 +22,7 @@ export default InputName;
 const Container = styled.article`
   display: flex;
   flex-direction: column;
+
   div {
     margin-top: 10px;
     display: flex;
@@ -42,4 +43,3 @@ const Title = styled.p`
   font-size: 16px;
   line-height: 20px;
 `;
-

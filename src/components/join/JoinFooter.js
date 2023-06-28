@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ColorButton from '../button/ColorButton';
+import { termModal } from '../../util/modal';
 import TermModal from './TermModal';
+import ColorButton from '../button/ColorButton';
 import IconUnchecked from '../../../public/assets/check-box.svg';
 import IconChecked from '../../../public/assets/check-fill-box.svg';
-import { termModal } from '../../util/modal';
 
-
-const JoinFooter = ({ onJoinClick, canPushJoin, canJoin, termCheck, setTermCheck }) => {
+const JoinFooter = ({ onJoinClick, canPushJoin, termCheck, setTermCheck }) => {
   const [modalOn, setModalOn] = useState(false);
   const [modalIdx, setModalIdx] = useState();
 
   return (
     <>
-    <Container>
-      <div>
-        <Checkbox
-          type="checkbox"
-          id="checkTerms"
-          onChange={() => setTermCheck(!termCheck)}
-        />
-        <label htmlFor="checkTerms" />
-        <p>
-        호두샵의{' '}
+      <Container>
+        <div>
+          <Checkbox
+            type="checkbox"
+            id="checkTerms"
+            onChange={() => setTermCheck(!termCheck)}
+          />
+          <label htmlFor="checkTerms" />
+          <p>
+            호두샵의{' '}
             <span
               onClick={() => {
                 setModalIdx(0);
@@ -41,15 +40,15 @@ const JoinFooter = ({ onJoinClick, canPushJoin, canJoin, termCheck, setTermCheck
               개인정보처리방침
             </span>
             에 대한 내용을 확인하였고 동의합니다.
-        </p>
-      </div>
-      <ColorButton
-         color={canPushJoin ? 'orange' : 'gray'}
-         onClick={canPushJoin ? onJoinClick : () => {}}
-      >
-        가입하기
-      </ColorButton>
-    </Container>
+          </p>
+        </div>
+        <ColorButton
+          color={canPushJoin ? 'green' : 'gray'}
+          onClick={canPushJoin ? onJoinClick : () => {}}
+        >
+          가입하기
+        </ColorButton>
+      </Container>
       {modalOn && (
         <TermModal
           setIsOn={setModalOn}
@@ -57,7 +56,7 @@ const JoinFooter = ({ onJoinClick, canPushJoin, canJoin, termCheck, setTermCheck
           content={termModal[modalIdx].content}
         />
       )}
-  </>
+    </>
   );
 };
 
@@ -68,15 +67,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 550px;
   padding: 35px;
-  @media screen and (max-width: 1024px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    max-width:100%;
-  }
 
   div {
     display: flex;

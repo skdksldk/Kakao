@@ -5,12 +5,10 @@ const DropdownPhone = ({ isOn, toggleIsOn, onSelect }) => {
   const onClick = (e) => {
     onSelect(e);
     toggleIsOn();
-  }
+  };
+  
   return (
-    <Container
-      isOn={isOn}
-      onClick={onClick}
-    >
+    <Container isOn={isOn} onClick={onClick}>
       <Item>010</Item>
       <Item>011</Item>
       <Item>016</Item>
@@ -24,7 +22,7 @@ const DropdownPhone = ({ isOn, toggleIsOn, onSelect }) => {
 export default DropdownPhone;
 
 const Container = styled.ul`
-  ${({ isOn }) => isOn ? `display: block;` : `display: none;`}
+  ${({ isOn }) => (isOn ? `display: block;` : `display: none;`)}
   position: absolute;
   z-index: 10;
   top: 60px;

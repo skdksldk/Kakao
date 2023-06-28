@@ -1,3 +1,4 @@
+// ColorIconButton과 구조가 거의 비슷한데 상속 등을 활용하는 방법은 없을까..?
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,6 +18,7 @@ const Container = styled.button`
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+
   margin-left: 30px;
   padding: 10px 20px;
   border: none;
@@ -25,6 +27,7 @@ const Container = styled.button`
   background-color: #21bf48;
   font-size: 18px;
   font-weight: 500;
+
   @media screen and (max-width: 768px) {
     margin-left: 20px;
     padding: 10px 16px;

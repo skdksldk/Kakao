@@ -14,8 +14,8 @@ const SearchBar = () => {
 export default SearchBar;
 
 const Container = styled.article`
-  margin-right: 30px;
   margin-left: 30px;
+  margin-right: 30px;
   padding: 8px 22px;
   display: flex;
   justify-content: space-between;
@@ -23,7 +23,7 @@ const Container = styled.article`
   // border: 2px solid #21bf48;
   border: 2px solid #ff7f00;
   border-radius: 50px;
-  
+
   input {
     width: 100%;
     font-size: 16px;
@@ -31,6 +31,7 @@ const Container = styled.article`
     border: none;
     outline: none;
   }
+
   button {
     margin-left: 10px;
     width: 28px;
@@ -43,6 +44,7 @@ const Container = styled.article`
     margin-left: 20px;
     margin-right: 20px;
     padding: 6px 16px;
+
     input {
       font-size: 12px;
       line-height: 16px;

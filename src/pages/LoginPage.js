@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ImgLogo from '../../public/assets/kakao.jpg';
 import LoginForm from '../components/login/LoginForm';
 import LoginFooter from '../components/login/LoginFooter';
-import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -14,12 +14,8 @@ const LoginPage = () => {
       <Img src={ImgLogo} onClick={() => navigate('/')} />
       <FormContainer>
         <FormType selected={userType}>
-          <button onClick={() => setUserType('BUYER')}>
-            구매회원 로그인
-          </button>
-          <button onClick={() => setUserType('SELLER')}>
-            판매회원 로그인
-          </button>
+          <button onClick={() => setUserType('BUYER')}>구매회원 로그인</button>
+          <button onClick={() => setUserType('SELLER')}>판매회원 로그인</button>
         </FormType>
         <FormContent>
           <LoginForm userType={userType} />
@@ -38,6 +34,7 @@ const Container = styled.div`
   align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
+
   & > img {
     width: 230px;
   }
@@ -49,15 +46,6 @@ const Img = styled.img`
 
 const FormContainer = styled.section`
   width: 550px;
-  @media screen and (max-width: 1024px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    max-width:100%;
-  }
 `;
 
 const FormType = styled.article`
@@ -65,6 +53,7 @@ const FormType = styled.article`
   position: relative;
   top: 20px;
   display: flex;
+
   button {
     padding-top: 20px;
     padding-bottom: 40px;
@@ -77,6 +66,7 @@ const FormType = styled.article`
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+
   ${({ selected }) => `
     button:nth-child(${1 + +(selected === 'SELLER')}) {
       z-index: 20;
@@ -87,6 +77,7 @@ const FormType = styled.article`
       background: #F2F2F2;
     }
   `}
+
   &::after {
     content: '';
     position: absolute;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ProductItem = ({ imgSrc, desc, title, price, onClick }) => {
   return (
     <Container>
-    <Img src={imgSrc} onClick={onClick}/>
+      <Img src={imgSrc} onClick={onClick} />
       <Desc>{desc}</Desc>
       <Title onClick={onClick}>{title}</Title>
       <Price>
@@ -64,7 +64,7 @@ const Title = styled.h2`
   font-weight: 400;
   cursor: pointer;
   &:hover {
-    color: #21BF48;
+    color: #21bf48;
   }
   @media screen and (max-width: 768px) {
     margin-top: 6px;

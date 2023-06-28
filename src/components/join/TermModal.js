@@ -39,9 +39,11 @@ const ModalContainer = styled.section`
   z-index: 60;
   flex-direction: column;
   padding: 40px 50px;
+
   background-color: #fff;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
+
   button {
     margin-top: 30px;
   }

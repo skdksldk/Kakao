@@ -13,8 +13,8 @@ const InputPhone = (props) => {
     setPhone(newPhone);
   };
 
-   // need to improve : non-accepted character showing for a split-second before being erased
-   const onlyNumber = () => {
+  // need to improve : non-accepted character showing for a split-second before being erased
+  const onlyNumber = () => {
     phone[1] = phone[1].replace(/[^0-9]/g, '');
     phone[2] = phone[2].replace(/[^0-9]/g, '');
   };
@@ -33,12 +33,17 @@ const InputPhone = (props) => {
           name="phoneSecond"
           value={phone[1]}
           onChange={handleChangePhone}
+          onkeydown={onlyNumber()}
+          type="text"
+          maxLength="4"
           {...props}
         />
         <InputBox
           name="phoneThird"
           value={phone[2]}
           onChange={handleChangePhone}
+          onkeydown={onlyNumber()}
+          maxLength="4"
           {...props}
         />
       </div>

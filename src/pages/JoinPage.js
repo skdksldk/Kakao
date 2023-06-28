@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { checkIdRegex, checkEmailRegex } from '../util/regex';
+import { API_URL } from '../util/api';
 import ImgLogo from '../../public/assets/kakao.jpg';
 import JoinForm from '../components/join/JoinForm';
 import JoinFooter from '../components/join/JoinFooter';
-import { useNavigate } from 'react-router-dom';
-import { checkIdRegex, checkEmailRegex } from '../util/regex';
 import JoinSuccessModal from '../components/join/JoinSuccessModal';
 
 const JoinPage = () => {
@@ -22,8 +23,6 @@ const JoinPage = () => {
     storeName: '',
   });
 
- 
-
   const [msgJoin, setMsgJoin] = useState({
     id: null,
     pw: null,
@@ -35,20 +34,19 @@ const JoinPage = () => {
     storeName: null,
   });
 
-   // 회원가입에 성공했는지 여부
-   const [joinSuccess, setJoinSuccess] = useState(false);
+  // 회원가입에 성공했는지 여부
+  const [joinSuccess, setJoinSuccess] = useState(false);
 
-   // 회원가입 버튼 비활성화/활성화
-   const [canPushJoin, setCanPushJoin] = useState(false);
+  // 회원가입 버튼 비활성화/활성화
+  const [canPushJoin, setCanPushJoin] = useState(false);
 
-     ///////////////////////////////////////////
-
+  ///////////////////////////////////////////
   // 회원가입 버튼 활성화 여부를 판단하기 위한 변수들
   const [termCheck, setTermCheck] = useState(false);
   const [isIdDuplicated, setIsIdDuplicated] = useState(true);
 
-   // true -> inputs' lengths are valid
-   const checkInputLengthBuyer = !(
+  // true -> inputs' lengths are valid
+  const checkInputLengthBuyer = !(
     joinInfo.id.length === 0 ||
     joinInfo.pw.length === 0 ||
     joinInfo.pwCheck.length === 0 ||
@@ -59,19 +57,18 @@ const JoinPage = () => {
   const checkInputLengthSeller =
     checkInputLengthBuyer &&
     !(joinInfo.sellerNum.length === 0 || joinInfo.storeName.length === 0);
-  
-     // joinInfo의 value들 또는 termCheck가 바뀔 때마다
-     // 가입 버튼 클릭 가능 여부 체크
 
+  // joinInfo의 value들 또는 termCheck가 바뀔 때마다
+  // 가입 버튼 클릭 가능 여부 체크
   useEffect(() => {
     if (userType === 'SELLER') {
       if (termCheck && !isIdDuplicated && checkInputLengthSeller)
-      setCanPushJoin(true);
-     else setCanPushJoin(false);
+        setCanPushJoin(true);
+      else setCanPushJoin(false);
     } else if (userType === 'BUYER') {
       if (termCheck && !isIdDuplicated && checkInputLengthBuyer)
-      setCanPushJoin(true);
-     else setCanPushJoin(false);
+        setCanPushJoin(true);
+      else setCanPushJoin(false);
     }
   }, [...Object.values(joinInfo), termCheck, isIdDuplicated]);
 
@@ -93,8 +90,7 @@ const JoinPage = () => {
   };
 
   const checkIdDup = async () => {
-    const url = 'https://openmarket.weniv.co.kr';
-    fetch(`${url}/accounts/signup/`, {
+    fetch(`${API_URL}/accounts/signup/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +99,7 @@ const JoinPage = () => {
         username: joinInfo.id,
       }),
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
       .then((data) => {
         if (data.username?.includes('해당 사용자 아이디는 이미 존재합니다.')) {
           setMsgJoin({
@@ -128,8 +124,7 @@ const JoinPage = () => {
   };
 
   const checkJoinBuyer = async () => {
-    const url = 'https://openmarket.weniv.co.kr';
-    fetch(`${url}/accounts/signup/`, {
+    fetch(`${API_URL}/accounts/signup/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -142,62 +137,10 @@ const JoinPage = () => {
         name: joinInfo.name,
       }),
     })
-    .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-          // phone number
-          if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
-            setMsgJoin({
-              ...msgJoin,
-              phone: {
-                msgContent:
-                  '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
-                msgColor: 'red',
-              },
-            });
-          } else if (
-            data.phone_number?.includes('해당 사용자 전화번호는 이미 존재합니다.')
-          ) {
-            setMsgJoin({
-              ...msgJoin,
-              phone: {
-                msgContent: '해당 사용자 전화번호는 이미 존재합니다.',
-                msgColor: 'red',
-              },
-            });
-          } else {
-            setMsgJoin({ ...msgJoin, phone: null });
-          }
-  
-          // 회원가입에 성공했을 때
-          if (data.user_type === 'BUYER') setJoinSuccess(true);
-      })
-      .catch((e) => alert(e.message));
-  };
-
-  const checkJoinSeller = () => {
-    const url = 'https://openmarket.weniv.co.kr';
-    fetch(`${url}/accounts/signup_seller/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: joinInfo.id,
-        password: joinInfo.pw,
-        password2: joinInfo.pwCheck,
-        phone_number: joinInfo.phone,
-        name: joinInfo.name,
-        company_registration_number: joinInfo.sellerNum,
-        store_name: joinInfo.storeName,
-      }),
-    })
-      
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         // phone number
         if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
           setMsgJoin({
@@ -219,7 +162,57 @@ const JoinPage = () => {
             },
           });
         } else {
-          setMsgJoin({...msgJoin, phone: null});
+          setMsgJoin({ ...msgJoin, phone: null });
+        }
+
+        // 회원가입에 성공했을 때
+        if (data.user_type === 'BUYER') setJoinSuccess(true);
+      })
+      .catch((e) => alert(e.message));
+  };
+
+  const checkJoinSeller = () => {
+    fetch(`${API_URL}/accounts/signup_seller/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: joinInfo.id,
+        password: joinInfo.pw,
+        password2: joinInfo.pwCheck,
+        phone_number: joinInfo.phone,
+        name: joinInfo.name,
+        company_registration_number: joinInfo.sellerNum,
+        store_name: joinInfo.storeName,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        // phone number
+        if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
+          setMsgJoin({
+            ...msgJoin,
+            phone: {
+              msgContent:
+                '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
+              msgColor: 'red',
+            },
+          });
+        } else if (
+          data.phone_number?.includes('해당 사용자 전화번호는 이미 존재합니다.')
+        ) {
+          setMsgJoin({
+            ...msgJoin,
+            phone: {
+              msgContent: '해당 사용자 전화번호는 이미 존재합니다.',
+              msgColor: 'red',
+            },
+          });
+        } else {
+          setMsgJoin({ ...msgJoin, phone: null });
         }
 
         // company registration number
@@ -236,7 +229,7 @@ const JoinPage = () => {
             },
           });
         } else {
-          setMsgJoin({...msgJoin, sellerNum: null});
+          setMsgJoin({ ...msgJoin, sellerNum: null });
         }
 
         // company name
@@ -253,44 +246,44 @@ const JoinPage = () => {
             },
           });
         } else {
-          setMsgJoin({...msgJoin, storeName: null});
+          setMsgJoin({ ...msgJoin, storeName: null });
         }
 
-         // 회원가입에 성공했을 때
-         if (data.user_type === 'SELLER') setJoinSuccess(true);
+        // 회원가입에 성공했을 때
+        if (data.user_type === 'SELLER') setJoinSuccess(true);
       })
       .catch((e) => alert(e.message));
   };
 
   return (
     <>
-    <Container>
-      <Img src={ImgLogo} onClick={() => navigate('/')} />
-      <FormContainer>
-        <FormType selected={userType}>
-          <button onClick={() => setUserType('BUYER')}>구매회원가입</button>
-          <button onClick={() => setUserType('SELLER')}>판매회원가입</button>
-        </FormType>
-        <FormContent>
-          <JoinForm
-            userType={userType}
-            joinInfo={joinInfo}
-            setJoinInfo={setJoinInfo}
-            msgJoin={msgJoin}
-            setMsgJoin={setMsgJoin}
-            checkId={checkId}
-          />
-        </FormContent>
-      </FormContainer>
-      <JoinFooter
-        onJoinClick={userType === 'BUYER' ? checkJoinBuyer : checkJoinSeller}
-        canPushJoin={canPushJoin}
-        termCheck={termCheck}
-        setTermCheck={setTermCheck}
-      />
-    </Container>
-    {joinSuccess && <JoinSuccessModal />}
-  </>
+      <Container>
+        <Img src={ImgLogo} onClick={() => navigate('/')} />
+        <FormContainer>
+          <FormType selected={userType}>
+            <button onClick={() => setUserType('BUYER')}>구매회원가입</button>
+            <button onClick={() => setUserType('SELLER')}>판매회원가입</button>
+          </FormType>
+          <FormContent>
+            <JoinForm
+              userType={userType}
+              joinInfo={joinInfo}
+              setJoinInfo={setJoinInfo}
+              msgJoin={msgJoin}
+              setMsgJoin={setMsgJoin}
+              checkId={checkId}
+            />
+          </FormContent>
+        </FormContainer>
+        <JoinFooter
+          onJoinClick={userType === 'BUYER' ? checkJoinBuyer : checkJoinSeller}
+          canPushJoin={canPushJoin}
+          termCheck={termCheck}
+          setTermCheck={setTermCheck}
+        />
+      </Container>
+      {joinSuccess && <JoinSuccessModal />}
+    </>
   );
 };
 
@@ -314,15 +307,6 @@ const Img = styled.img`
 
 const FormContainer = styled.section`
   width: 550px;
-  @media screen and (max-width: 1024px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    max-width:100%;
-  }
 `;
 
 const FormType = styled.article`

@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const LoginFooter = () => {
   const navigate = useNavigate();
-  
+
   return (
     <Container>
       <li onClick={() => navigate('/join')}>
@@ -22,6 +22,7 @@ export default LoginFooter;
 const Container = styled.ul`
   margin-top: 30px;
   display: flex;
+
   li {
     font-size: 16px;
     line-height: 20px;
@@ -33,6 +34,7 @@ const Container = styled.ul`
       margin-right: 10px;
     }
   }
+
   a {
     cursor: pointer;
   }

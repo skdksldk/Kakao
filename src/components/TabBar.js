@@ -3,10 +3,9 @@ import styled from 'styled-components';
 import TabButton from './TabButton';
 
 const TabBar = ({ tabList, chosenTab, setChosenTab }) => {
-
   return (
     <Container>
-       {tabList.map((val, idx) => (
+      {tabList.map((val, idx) => (
         <TabButton
           key={idx}
           chosen={idx === chosenTab}
