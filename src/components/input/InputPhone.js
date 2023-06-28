@@ -13,6 +13,12 @@ const InputPhone = (props) => {
     setPhone(newPhone);
   };
 
+   // need to improve : non-accepted character showing for a split-second before being erased
+   const onlyNumber = () => {
+    phone[1] = phone[1].replace(/[^0-9]/g, '');
+    phone[2] = phone[2].replace(/[^0-9]/g, '');
+  };
+
   return (
     <Container>
       <Title>{title}</Title>

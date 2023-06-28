@@ -21,42 +21,7 @@ const JoinPage = () => {
     storeName: '',
   });
 
-  useEffect(() => {
-    if (userType === 'SELLER') {
-      if (joinInfo.id.length === 0 ||
-        joinInfo.pw.length === 0 ||
-        joinInfo.pwCheck.length === 0 ||
-        joinInfo.name.length === 0 ||
-        joinInfo.phone.length === 3 ||
-        joinInfo.email.length === 1 || 
-        joinInfo.sellerNum.length === 0 ||
-        joinInfo.storeName.length === 0 ||
-        termCheck === false)
-        setCanJoin(false);
-      else
-        setCanJoin(true);
-    } else {
-      if (joinInfo.id.length === 0 ||
-        joinInfo.pw.length === 0 ||
-        joinInfo.pwCheck.length === 0 ||
-        joinInfo.name.length === 0 ||
-        joinInfo.phone.length === 3 ||
-        joinInfo.email.length === 1 || 
-        termCheck === false)
-        setCanJoin(false);
-      else
-        setCanJoin(true);
-    }
-  }, [joinInfo.id, 
-    joinInfo.pw, 
-    joinInfo.pwCheck,
-    joinInfo.name, 
-    joinInfo.phone,
-    joinInfo.email,
-    joinInfo.sellerNum,
-    joinInfo.storeName,
-    termCheck
-  ]);
+ 
 
   const [msgJoin, setMsgJoin] = useState({
     id: null,
@@ -71,6 +36,29 @@ const JoinPage = () => {
 
   const [canJoin, setCanJoin] = useState(false);
   const [termCheck, setTermCheck] = useState(false);
+
+   // true -> inputs' lengths are valid
+   const checkInputLengthBuyer = !(
+    joinInfo.id.length === 0 ||
+    joinInfo.pw.length === 0 ||
+    joinInfo.pwCheck.length === 0 ||
+    joinInfo.name.length === 0 ||
+    joinInfo.phone.length === 3 ||
+    joinInfo.email.length === 1
+  );
+  const checkInputLengthSeller =
+    checkInputLengthBuyer &&
+    !(joinInfo.sellerNum.length === 0 || joinInfo.storeName.length === 0);
+
+  useEffect(() => {
+    if (userType === 'SELLER') {
+      if (checkInputLengthSeller && termCheck) setCanJoin(true);
+      else setCanJoin(false);
+    } else if (userType === 'BUYER') {
+      if (checkInputLengthBuyer && termCheck) setCanJoin(true);
+      else setCanJoin(false);
+    }
+  }, [...Object.values(joinInfo), termCheck]);
 
   const checkId = () => {
     if (!checkIdRegex(joinInfo.id)) {
@@ -236,7 +224,7 @@ const JoinPage = () => {
 
   return (
     <Container>
-      <img src={ImgLogo} />
+      <img src={ImgLogo} onClick={() => navigate('/')} />
       <FormContainer>
         <FormType selected={userType}>
           <button onClick={() => setUserType('BUYER')}>구매회원가입</button>
@@ -275,6 +263,10 @@ const Container = styled.div`
   & > img {
     width: 230px;
   }
+`;
+
+const Img = styled.img`
+  cursor: pointer;
 `;
 
 const FormContainer = styled.section`
