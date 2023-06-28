@@ -1,39 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CarouselIndicator from './CarouselIndicator';
-import Card1 from '../../public/assets/product-1.jpg';
-import Card2 from '../../public/assets/product-2.jpg';
-import Card3 from '../../public/assets/product-3.jpg';
-import Card4 from '../../public/assets/product-4.jpg';
 import BtnPrev from '../../public/assets/arrow-left.svg';
 import BtnNext from '../../public/assets/arrow-right.svg';
+import { carouselImgs } from '../util/carousel';
 
-const carouselImgs = [
-  {
-    src: Card1,
-    alt: 'img1',
-  },
-  {
-    src: Card2,
-    alt: 'img2',
-  },
-  {
-    src: Card3,
-    alt: 'img3',
-  },
-  {
-    src: Card4,
-    alt: 'img4',
-  },
-];
+
 
 const Carousel = () => {
 
   const [activeIdx, setActiveIdx] = useState(0);
 
-  function changeImg(idx) {
-    setActiveIdx(idx);
-  }
 
   return (
     <Container>
@@ -44,7 +21,7 @@ const Carousel = () => {
       </ImageContainer>
       <IndicatorContainer activeIdx={activeIdx}>
         {carouselImgs.map((img, idx) => (
-          <CarouselIndicator key={idx} onClick={() => changeImg(idx)} />
+           <CarouselIndicator key={idx} onClick={() => setActiveIdx(idx)} />
         ))}
       </IndicatorContainer>
       <ButtonPrev onClick={() => {
