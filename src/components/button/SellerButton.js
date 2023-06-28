@@ -1,4 +1,3 @@
-// ColorIconButton과 구조가 거의 비슷한데 상속 등을 활용하는 방법은 없을까..?
 import React from 'react';
 import styled from 'styled-components';
 

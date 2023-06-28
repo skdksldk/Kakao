@@ -110,4 +110,13 @@ const CartContainer = styled.section`
     font-size: 36px;
     line-height: 44px;
   }
+  @media screen and (max-width: 1024px) {
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
+  }
 `;
