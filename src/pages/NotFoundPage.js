@@ -45,7 +45,7 @@ const Container = styled.section`
   display: flex;
   width: 750px;
   @media screen and (max-width: 1024px) {
-    margin-top:10%;
+    margin-top:20%;
     transform: translate(-50%, -50%);
     display: flex;
     width: 100%;

@@ -7,7 +7,7 @@ import IconChecked from '../../../public/assets/check-fill-box.svg';
 import { termModal } from '../../util/modal';
 
 
-const JoinFooter = ({ onJoinClick, canJoin, termCheck, setTermCheck }) => {
+const JoinFooter = ({ onJoinClick, canPushJoin, canJoin, termCheck, setTermCheck }) => {
   const [modalOn, setModalOn] = useState(false);
   const [modalIdx, setModalIdx] = useState();
 
@@ -44,8 +44,8 @@ const JoinFooter = ({ onJoinClick, canJoin, termCheck, setTermCheck }) => {
         </p>
       </div>
       <ColorButton
-        color={canJoin ? 'green' : 'gray'}
-        onClick={canJoin ? onJoinClick : () => {}}
+         color={canPushJoin ? 'orange' : 'gray'}
+         onClick={canPushJoin ? onJoinClick : () => {}}
       >
         가입하기
       </ColorButton>
