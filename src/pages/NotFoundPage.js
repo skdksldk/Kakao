@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import NotFoundIcon from '../../public/assets/ico_empty_ryan.png';
+import NotFoundIcon from '/public/assets/ico_empty_ryan.png';
 import ColorButton from '../components/button/ColorButton';
 
 const NotFoundPage = () => {

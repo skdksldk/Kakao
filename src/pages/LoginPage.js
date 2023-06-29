@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ImgLogo from '../../public/assets/kakao.jpg';
+import ImgLogo from '/public/assets/kakao.jpg';
 import LoginForm from '../components/login/LoginForm';
 import LoginFooter from '../components/login/LoginFooter';
 

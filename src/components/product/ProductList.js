@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
-import { API_URL } from '../../util/api';
+import { API_URL } from '/src/utils/api';
 import { useQuery } from 'react-query';
 
 const getProducts = async () => {
@@ -18,7 +18,8 @@ const getProducts = async () => {
       if (!res.ok) throw new Error('http 에러');
       return res.json();
     })
-    .then((data) => data.results);
+    .then((data) => data.results)
+    .catch((e) => console.error(e));
 };
 
 

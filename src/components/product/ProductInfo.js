@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { API_URL } from '../../util/api';
+import { API_URL } from '/src/utils/api';
 import AmountPicker from '../AmountPicker';
 import ColorButton from '../button/ColorButton';
 import CartModal from '../modal/CartModal';
@@ -54,7 +54,7 @@ const ProductInfo = ({ id, productData }) => {
           setModalOn(true);
         }
       })
-      .catch((e) => alert(e.message));
+      .catch((e) => console.error(e));
   };
 
   return (

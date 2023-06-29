@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { checkIdRegex, checkEmailRegex } from '../util/regex';
-import { API_URL } from '../util/api';
-import ImgLogo from '../../public/assets/kakao.jpg';
+import { checkIdRegex, checkEmailRegex } from '/src/utils/regex';
+import { API_URL } from '/src/utils/api';
+import ImgLogo from '/public/assets/kakao.jpg';
 import JoinForm from '../components/join/JoinForm';
 import JoinFooter from '../components/join/JoinFooter';
 import JoinSuccessModal from '../components/join/JoinSuccessModal';
@@ -189,7 +189,7 @@ const JoinPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+       
 
         // phone number
         if (data.phone_number?.includes('올바른 값을 입력하세요.')) {
@@ -252,7 +252,7 @@ const JoinPage = () => {
         // 회원가입에 성공했을 때
         if (data.user_type === 'SELLER') setJoinSuccess(true);
       })
-      .catch((e) => alert(e.message));
+      .catch((e) => console.error(e));
   };
 
   return (

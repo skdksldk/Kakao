@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputText from '../input/InputText';
 import ColorButton from '../button/ColorButton';
-import { API_URL } from '../../util/api';
+import { API_URL } from '/src/utils/api';
 import regeneratorRuntime from 'regenerator-runtime';
 
 const LoginForm = ({ userType }) => {
@@ -65,7 +65,7 @@ const LoginForm = ({ userType }) => {
           navigate(-1, { replace: true });
         }
       })
-      .catch((e) => alert(e.message));
+      .catch((e) => console.error(e));
   };
 
   const handleEnter = (e) => {

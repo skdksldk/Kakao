@@ -5,7 +5,7 @@ import ProductInfo from './ProductInfo';
 import ProductDetail from './ProductDetail';
 import ErrorMessage from '../ErrorMessage';
 import Loading from '../Loading';
-import { API_URL } from '../../util/api';
+import { API_URL } from '/src/utils/api';
 import { useQuery } from 'react-query';
 
 
@@ -18,7 +18,8 @@ const getProductInfo = async (id) => {
   }).then((res) => {
     // if (!res.ok) throw new Error('http error');
     return res.json();
-  });
+  })
+  .catch((e) => console.error(e));
 };
 
 
@@ -29,7 +30,7 @@ const Product = () => {
   );
 
   if (isLoading) return <Loading />;
-  if (data?.detail === '찾을 수 없습니다.')
+  if (data.detail === '찾을 수 없습니다.')
     return <ErrorMessage emoji="😶‍🌫️" message="해당 상품은 존재하지 않습니다." />;
   if (error)
     return <ErrorMessage emoji="😭" message={`에러 발생: ${error.message}`} />;
