@@ -34,6 +34,15 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
 
 const PriceContainer = styled.article`
@@ -45,4 +54,13 @@ const PriceContainer = styled.article`
   padding: 40px 100px;
   background-color: #f2f2f2;
   border-radius: 10px;
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
