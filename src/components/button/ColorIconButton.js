@@ -16,7 +16,6 @@ const Container = styled.button`
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
 
   margin-left: 30px;
   padding: 10px 20px;

@@ -29,7 +29,7 @@ const handleSize = (size) => {
 const handleColor = (color) => {
   switch (color) {
     case 'orange':
-      return 'background-color: #ff7f00';
+      return 'background-color:  #ff7f00;';
     case 'gray':
       return `
         background-color: #C4C4C4;
@@ -55,7 +55,6 @@ const Container = styled.button`
   border-radius: 5px;
   color: #ffffff;
   font-weight: 700;
-  flex-shrink: 0;
 
   ${({ width }) => `width: ${width};`}
   ${({ size }) => handleSize(size)}

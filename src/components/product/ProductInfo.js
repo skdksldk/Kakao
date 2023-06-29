@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { API_URL } from '../../util/api';
 import AmountPicker from '../AmountPicker';
 import ColorButton from '../button/ColorButton';
+import CartModal from '../modal/CartModal';
 
 const ProductInfo = ({ id, productData }) => {
   const {
@@ -14,11 +15,19 @@ const ProductInfo = ({ id, productData }) => {
     stock,
   } = productData;
   const [amount, setAmount] = useState(0);
+  const [modalOn, setModalOn] = useState(false);
+  const [modalContent, setModalContent] = useState('content');
   const onIncrease = () => setAmount(amount < stock ? amount + 1 : amount);
   const onDecrease = () => setAmount(amount > 0 ? amount - 1 : 0);
   useEffect(() => setAmount(0), [id]);
 
   const addToCart = async (product_id, quantity, check) => {
+    if (!check) {
+      setModalContent('0개를 담을 수 없습니다.');
+      setModalOn(true);
+      return;
+    }
+    
     fetch(`${API_URL}/cart/`, {
       method: 'POST',
       headers: {
@@ -36,15 +45,20 @@ const ProductInfo = ({ id, productData }) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+       
         if (data.FAIL_message) {
-          alert("현재 재고보다 더 많은 수량을 담을 수 없습니다.")
+          setModalContent('현재 재고보다 더 많은 수량을 담을 수 없습니다.');
+          setModalOn(true);
+        } else {
+          setModalContent('장바구니에 상품을 담았습니다!');
+          setModalOn(true);
         }
       })
       .catch((e) => alert(e.message));
   };
 
   return (
+    <>
     <Container>
       <PartFirst>
         <article>
@@ -88,13 +102,17 @@ const ProductInfo = ({ id, productData }) => {
           <ColorButton
             color={'charcoal'}
             width={'200px'}
-            onClick={() => addToCart(id.toString(), amount, amount !== 0)}
+            onClick={() => {
+              addToCart(id.toString(), amount, amount !== 0);
+            }}
           >
             장바구니
           </ColorButton>
         </PartBtn>
       </PartThird>
     </Container>
+    {modalOn && <CartModal setIsOn={setModalOn} content={modalContent} />}
+  </>
   );
 };
 

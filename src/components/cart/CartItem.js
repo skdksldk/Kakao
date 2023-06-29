@@ -8,7 +8,50 @@ import IconLoading from '../../../public/assets/icon-loading.png';
 import ColorButton from '../button/ColorButton';
 import { API_URL } from '../../util/api';
 
-const CartItem = ({ product_id, quantity, onRemove }) => {
+const CartItem = ({
+  cart_item_id,
+  product_id,
+  quantity,
+  is_active,
+  checked,
+  toggleChecked,
+  onRemove,
+}) => {
+  // QUANTITY
+  const [itemQuantity, setItemQuantity] = useState(0);
+
+  const onIncrease = () => {
+    if (itemQuantity === itemInfo.stock) return;
+    setItemQuantity(itemQuantity + 1);
+    updateItemQuantity(itemQuantity + 1);
+  };
+  const onDecrease = () => {
+    if (itemQuantity === 1) return;
+    setItemQuantity(itemQuantity - 1);
+    updateItemQuantity(itemQuantity - 1);
+  };
+
+  const updateItemQuantity = async (quantity) => {
+    fetch(`${API_URL}/cart/${cart_item_id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({
+        product_id,
+        quantity,
+        is_active,
+      }),
+    })
+      .then((res) => {
+        // if (!res.ok) throw new Error('http 에러');
+        return res.json();
+      })
+      .catch((e) => alert(e.message));
+  };
+
+  // ITEM INFO
   const [itemInfo, setItemInfo] = useState({
     seller_store: '로딩중...',
     product_name: '로딩중...',
@@ -16,10 +59,11 @@ const CartItem = ({ product_id, quantity, onRemove }) => {
     price: 0,
     shipping_method: 'DELIVERY',
     shipping_fee: 0,
+    stock: 0,
   });
 
   const getItemInfo = async () => {
-    fetch(`${API_URL}/products/${product_id}`, {
+    fetch(`${API_URL}/products/${product_id}/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -36,14 +80,20 @@ const CartItem = ({ product_id, quantity, onRemove }) => {
   };
 
   useEffect(() => {
+    setItemQuantity(quantity);
     getItemInfo();
   }, []);
 
   return (
     <Container>
       <DeleteButton src={IconDelete} onClick={onRemove} />
-      <Checkbox type="checkbox" id={'checkItem'} />
-      <label htmlFor={'checkItem'} />
+      <Checkbox
+        type="checkbox"
+        id={`cartItem_${product_id}`}
+        checked={checked}
+        onChange={toggleChecked}
+      />
+      <label htmlFor={`cartItem_${product_id}`} />
       <ItemImg src={itemInfo.image} />
       <ItemInfoContainer>
         <GrayText>{itemInfo.seller_store}</GrayText>
@@ -57,10 +107,21 @@ const CartItem = ({ product_id, quantity, onRemove }) => {
         </GrayText>
       </ItemInfoContainer>
       <AmountContainer>
-        <AmountPicker amount={1} stock={quantity} />
+        <AmountPicker
+          amount={itemQuantity}
+          stock={itemInfo.stock}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+        />
       </AmountContainer>
       <PriceContainer>
-        <p>{itemInfo.price.toLocaleString('ko-KR')}원</p>
+        <p>
+          {(
+            itemInfo.price * itemQuantity +
+            itemInfo.shipping_fee
+          ).toLocaleString('ko-KR')}
+          원
+        </p>
         <ColorButton size={'S'} width={'130px'}>
           주문하기
         </ColorButton>
@@ -86,15 +147,6 @@ const Container = styled.article`
   & + article {
     margin-top: 10px;
   }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const Checkbox = styled.input`
@@ -104,10 +156,10 @@ const Checkbox = styled.input`
     height: 20px;
     margin-top: 1px;
     margin-left: 30px;
-    background: url(${IconOn}) center/20px 20px;
+    background: url(${IconOff}) center/20px 20px;
   }
   &:checked + label {
-    background-image: url(${IconOff});
+    background-image: url(${IconOn});
   }
 `;
 
@@ -126,15 +178,6 @@ const ItemInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const GrayText = styled.p`
@@ -162,18 +205,6 @@ const AmountContainer = styled.div`
     margin: 0 auto;
   }
   width: 250px;
-  @media screen and (max-width: 1024px) {
-    margin-top:6%;
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    margin-top:6%;
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    
-    width:100%;
-  }
 `;
 
 const PriceContainer = styled.div`
@@ -189,15 +220,6 @@ const PriceContainer = styled.div`
   }
   button {
     margin-top: 26px;
-  }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
   }
 `;
 
