@@ -8,10 +8,12 @@ import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TestPage from './pages/TestPage';
 import './App.css';
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
 
   return (
+    <RecoilRoot>
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="product/:id" element={<ProductPage />} />
@@ -20,6 +22,7 @@ const App = () => {
       <Route path="cart" element={<CartPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
+  </RecoilRoot>
   );
 };
 

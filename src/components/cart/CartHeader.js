@@ -51,18 +51,18 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOn}) center/20px 20px;
+    @media screen and (max-width: 1024px) {
+      width:65px;
+    }
+    @media screen and (max-width: 768px) {
+      width:65px;
+    }
+    @media screen and (max-width: 576px) {
+      width:65px;
+    }
   }
   &:checked + label {
     background-image: url(${IconOff});
-  }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
   }
 `;
 
