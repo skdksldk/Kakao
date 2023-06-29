@@ -32,15 +32,6 @@ const Container = styled.article`
     line-height: 23px;
     text-align: center;
   }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const Checkbox = styled.input`
@@ -51,15 +42,6 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOn}) center/20px 20px;
-    @media screen and (max-width: 1024px) {
-      width:65px;
-    }
-    @media screen and (max-width: 768px) {
-      width:65px;
-    }
-    @media screen and (max-width: 576px) {
-      width:65px;
-    }
   }
   &:checked + label {
     background-image: url(${IconOff});
@@ -68,39 +50,12 @@ const Checkbox = styled.input`
 
 const ItemInfoContainer = styled.div`
   flex-grow: 1;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const AmountContainer = styled.div`
   width: 250px;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const PriceContainer = styled.div`
   width: 300px;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;

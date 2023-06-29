@@ -4,124 +4,71 @@ import AmountPicker from '../AmountPicker';
 import IconOn from '../../../public/assets/check-circle-on.svg';
 import IconOff from '../../../public/assets/check-circle-off.svg';
 import IconDelete from '../../../public/assets/icon-delete.svg';
-import IconLoading from '../../../public/assets/icon-loading.png';
 import ColorButton from '../button/ColorButton';
-import { API_URL } from '../../util/api';
 
 const CartItem = ({
   cart_item_id,
   product_id,
   quantity,
   is_active,
-  checked,
-  toggleChecked,
+  product_name,
+  image,
+  price,
+  shipping_method,
+  shipping_fee,
+  stock,
+  seller,
+  toggleCheck,
   onRemove,
+  updateCartItem,
 }) => {
   // QUANTITY
-  const [itemQuantity, setItemQuantity] = useState(0);
-
   const onIncrease = () => {
-    if (itemQuantity === itemInfo.stock) return;
-    setItemQuantity(itemQuantity + 1);
-    updateItemQuantity(itemQuantity + 1);
+    if (quantity === stock) return;
+    updateCartItem(cart_item_id, product_id, quantity + 1, is_active);
   };
   const onDecrease = () => {
-    if (itemQuantity === 1) return;
-    setItemQuantity(itemQuantity - 1);
-    updateItemQuantity(itemQuantity - 1);
+    if (quantity === 1) return;
+    updateCartItem(cart_item_id, product_id, quantity - 1, is_active);
   };
-
-  const updateItemQuantity = async (quantity) => {
-    fetch(`${API_URL}/cart/${cart_item_id}/`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `JWT ${localStorage.getItem('token')}`,
-      },
-      body: JSON.stringify({
-        product_id,
-        quantity,
-        is_active,
-      }),
-    })
-      .then((res) => {
-        // if (!res.ok) throw new Error('http 에러');
-        return res.json();
-      })
-      .catch((e) => alert(e.message));
-  };
-
-  // ITEM INFO
-  const [itemInfo, setItemInfo] = useState({
-    seller_store: '로딩중...',
-    product_name: '로딩중...',
-    image: IconLoading,
-    price: 0,
-    shipping_method: 'DELIVERY',
-    shipping_fee: 0,
-    stock: 0,
-  });
-
-  const getItemInfo = async () => {
-    fetch(`${API_URL}/products/${product_id}/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        // if (!res.ok) throw new Error('http 에러');
-        return res.json();
-      })
-      .then((data) => {
-        setItemInfo(data);
-      })
-      .catch((e) => alert(e.message));
-  };
-
-  useEffect(() => {
-    setItemQuantity(quantity);
-    getItemInfo();
-  }, []);
 
   return (
     <Container>
-      <DeleteButton src={IconDelete} onClick={onRemove} />
+      <DeleteButton
+        src={IconDelete}
+        onClick={() => {
+          onRemove(cart_item_id);
+        }}
+      />
       <Checkbox
         type="checkbox"
         id={`cartItem_${product_id}`}
-        checked={checked}
-        onChange={toggleChecked}
+        checked={is_active}
+        onChange={toggleCheck}
       />
       <label htmlFor={`cartItem_${product_id}`} />
-      <ItemImg src={itemInfo.image} />
+      <ItemImg src={image} />
       <ItemInfoContainer>
-        <GrayText>{itemInfo.seller_store}</GrayText>
-        <ProductText>{itemInfo.product_name}</ProductText>
-        <PriceText>{itemInfo.price.toLocaleString('ko-KR')}원</PriceText>
+        <GrayText>{seller}</GrayText>
+        <ProductText>{product_name}</ProductText>
+        <PriceText>{price.toLocaleString('ko-KR')}원</PriceText>
         <GrayText>
-          {itemInfo.shipping_method === 'PARCEL' ? '소포' : '택배'}배송 /{' '}
-          {itemInfo.shipping_fee === 0
+          {shipping_method === 'PARCEL' ? '소포' : '택배'}배송 /{' '}
+          {shipping_fee === 0
             ? '무료배송'
-            : `${itemInfo.shipping_fee.toLocaleString('ko-KR')}원`}
+            : `${shipping_fee.toLocaleString('ko-KR')}원`}
         </GrayText>
       </ItemInfoContainer>
       <AmountContainer>
         <AmountPicker
-          amount={itemQuantity}
-          stock={itemInfo.stock}
+          amount={quantity}
+          stock={stock}
           onIncrease={onIncrease}
           onDecrease={onDecrease}
         />
       </AmountContainer>
       <PriceContainer>
-        <p>
-          {(
-            itemInfo.price * itemQuantity +
-            itemInfo.shipping_fee
-          ).toLocaleString('ko-KR')}
-          원
-        </p>
+        <p>{(price * quantity + shipping_fee).toLocaleString('ko-KR')}원</p>
         <ColorButton size={'S'} width={'130px'}>
           주문하기
         </ColorButton>
@@ -130,7 +77,7 @@ const CartItem = ({
   );
 };
 
-export default CartItem;
+export default React.memo(CartItem);
 
 const Container = styled.article`
   display: flex;
@@ -147,15 +94,6 @@ const Container = styled.article`
   & + article {
     margin-top: 10px;
   }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const Checkbox = styled.input`
@@ -166,15 +104,6 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOff}) center/20px 20px;
-    @media screen and (max-width: 1024px) {
-      width:85px;
-    }
-    @media screen and (max-width: 768px) {
-      width:140px;
-    }
-    @media screen and (max-width: 576px) {
-      width:100px;
-    }
   }
   &:checked + label {
     background-image: url(${IconOn});
@@ -196,16 +125,7 @@ const ItemInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
-  `;
+`;
 
 const GrayText = styled.p`
   font-size: 14px;
@@ -232,17 +152,6 @@ const AmountContainer = styled.div`
     margin: 0 auto;
   }
   width: 250px;
-  @media screen and (max-width: 1024px) {
-    margin-top:6%;
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    margin-top:6%; 
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const PriceContainer = styled.div`
@@ -258,15 +167,6 @@ const PriceContainer = styled.div`
   }
   button {
     margin-top: 26px;
-  }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
   }
 `;
 
