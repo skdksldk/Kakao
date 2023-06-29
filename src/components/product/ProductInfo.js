@@ -122,6 +122,15 @@ const Container = styled.section`
   width: 630px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1024px) {
+    width:300px;
+  }
+  @media screen and (max-width: 768px) {
+    width:300px;
+  }
+  @media screen and (max-width: 576px) {
+    width:300px;
+  }
 `;
 
 const PartFirst = styled.section`

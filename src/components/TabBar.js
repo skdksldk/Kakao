@@ -23,4 +23,13 @@ export default TabBar;
 const Container = styled.article`
   margin-bottom: 30px;
   display: flex;
+  @media screen and (max-width: 1024px) {
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
+  }
 `;
