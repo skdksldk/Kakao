@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query'
-import ProductPage from './pages/ProductPage';
-import LoginPage from './pages/LoginPage';
-import JoinPage from './pages/JoinPage';
-import NotFoundPage from './pages/NotFoundPage';
-import { MainPage, CartPage } from './pages';
+import { MainPage, LoginPage, JoinPage, ProductPage, CartPage, NotFoundPage } from './pages';
 import './App.css';
 
 const queryClient = new QueryClient();
