@@ -41,6 +41,15 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 140px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 const ContainerUpper = styled.section`
@@ -52,5 +61,21 @@ const ContainerUpper = styled.section`
     width: 600px;
     height: 600px;
     object-fit: cover;
+    @media screen and (max-width: 1024px) {
+      margin-top: 2%;
+      width: 300px;
+      height: 300px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-top: 2%;
+      width: 300px;
+      height: 300px;
+    }
+    @media screen and (max-width: 576px) {
+      margin-top: 2%;
+      width: 300px;
+      height: 300px;
+    }
   }
+  
 `;

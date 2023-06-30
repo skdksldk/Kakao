@@ -114,6 +114,7 @@ const Container = styled.section`
   width: 630px;
   display: flex;
   flex-direction: column;
+  
 `;
 
 const PartFirst = styled.section`

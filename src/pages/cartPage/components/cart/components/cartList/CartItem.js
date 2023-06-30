@@ -116,6 +116,15 @@ const Container = styled.article`
   & + article {
     margin-top: 10px;
   }
+  @media screen and (max-width: 1024px) {
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
+  }
 `;
 
 const Checkbox = styled.input`
@@ -126,6 +135,15 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOff}) center/20px 20px;
+    @media screen and (max-width: 1024px) {
+      width:85px;
+    }
+    @media screen and (max-width: 768px) {
+      width:110px;
+    }
+    @media screen and (max-width: 576px) {
+      width:100px;
+    }
   }
   &:checked + label {
     background-image: url(${IconOn});
@@ -147,6 +165,15 @@ const ItemInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (max-width: 1024px) {
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
+  }
 `;
 
 const TextGray = styled.p`
@@ -174,6 +201,17 @@ const AmountContainer = styled.div`
     margin: 0 auto;
   }
   width: 250px;
+  @media screen and (max-width: 1024px) {
+    margin-top:6%;
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top:6%; 
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -189,6 +227,15 @@ const PriceContainer = styled.div`
   }
   button {
     margin-top: 26px;
+  }
+  @media screen and (max-width: 1024px) {
+    width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    width:100%;
   }
 `;
 
