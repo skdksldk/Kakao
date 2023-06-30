@@ -1,131 +1,111 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { checkIdRegex, checkPwRegex } from '/src/utils/regex';
-import InputEmail from '../input/InputEmail';
-import InputName from '../input/InputName';
-import InputPassword from '../input/InputPassword';
-import InputPhone from '../input/InputPhone';
-import InputWithBtn from '../input/InputWithBtn';
+import InputEmail from './components/input/InputEmail';
+import InputName from './components/input/InputName';
+import InputPassword from './components/input/InputPassword';
+import InputPhone from './components/input/InputPhone';
+import InputWithBtn from './components/input/InputWithBtn';
+import { idRegex, pwRegex } from './utils/regex';
+import { idDupBody, sendJoinRequest } from './utils/joinRequest';
 
 const JoinForm = ({
   userType,
-  joinInfo,
-  setJoinInfo,
-  msgJoin,
-  setMsgJoin,
-  checkId,
+  joinInputs,
+  setJoinInputs,
+  joinErrors,
+  setJoinErrors,
 }) => {
-  const { id, pw, pwCheck, name } = joinInfo;
+  const { id, pw, pwCheck } = joinInputs;
   const idRef = useRef(null);
 
-  // id (check regex)
-  const onBlurIdCheck = () => {
-    if (id === '') {
-      setMsgJoin({
-        ...msgJoin,
-        id: null,
-      });
-      return;
-    }
+  ////////////////// id (regex, 중복) //////////////////
+  const onClickIdCheck = () => {
+    if (!checkIdRegex()) return;
+    checkIdDup();
+  };
 
-    if (!checkIdRegex(id)) {
-      setMsgJoin({
-        ...msgJoin,
-        id: {
-          msgContent:
-            '20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.',
-          msgColor: 'red',
-        },
+  const checkIdRegex = () => {
+    if (!idRegex.test(id)) {
+      setJoinErrors({
+        ...joinErrors,
+        id: '20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.',
       });
+      return false;
     } else {
-      setMsgJoin({
-        ...msgJoin,
+      setJoinErrors({
+        ...joinErrors,
         id: null,
       });
+      return true;
     }
   };
 
-  // pw
+  const checkIdDup = async () => {
+    await sendJoinRequest(userType, idDupBody(joinInputs.id))
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username?.includes('해당 사용자 아이디는 이미 존재합니다.')) {
+          setJoinErrors({
+            ...joinErrors,
+            id: '이미 사용 중인 아이디입니다.',
+          });
+        } else {
+          setJoinErrors({
+            ...joinErrors,
+            id: null,
+          });
+        }
+      })
+      .catch((e) => console.error(e));
+  };
+
+  ////////////////// pw //////////////////
   const [isPwValid, setIsPwValid] = useState(false);
   const [isPwCheckValid, setIsPwCheckValid] = useState(false);
 
-  const pwRegexCheck = () => {
-    if (!checkPwRegex(pw)) {
-      setMsgJoin({
-        ...msgJoin,
-        pw: {
-          msgContent: '8자 이상, 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
-          msgColor: 'red',
-        },
+  const onBlurPw = () => {
+    // pw의 regex 체크
+    if (!pwRegex.test(pw)) {
+      setJoinErrors((joinErrors) => {
+        return {
+          ...joinErrors,
+          pw: '8자 이상, 영문 대 소문자, 숫자, 특수문자를 사용하세요.',
+        };
       });
       setIsPwValid(false);
     } else {
-      setMsgJoin({ ...msgJoin, pw: null });
+      setJoinErrors((joinErrors) => {
+        return { ...joinErrors, pw: null };
+      });
       setIsPwValid(true);
     }
-  };
 
-  const pwMatchCheck = () => {
+    // pw, pwCheck 일치하는지 체크
     if (pw === pwCheck) {
-      setMsgJoin({ ...msgJoin, pwCheck: null });
-      if (checkPwRegex(pwCheck)) setIsPwCheckValid(true);
+      setJoinErrors((joinErrors) => {
+        return { ...joinErrors, pwCheck: null };
+      });
+      if (pwRegex.test(pw)) setIsPwCheckValid(true);
     } else {
-      setMsgJoin({
-        ...msgJoin,
-        pwCheck: {
-          msgContent: '비밀번호가 일치하지 않습니다.',
-          msgColor: 'red',
-        },
+      setJoinErrors((joinErrors) => {
+        return {
+          ...joinErrors,
+          pwCheck: '비밀번호가 일치하지 않습니다.',
+        };
       });
       setIsPwCheckValid(false);
     }
   };
 
-  const onBlurPw = () => {
-    if (pw === '') {
-      setMsgJoin({ ...msgJoin, pw: null });
-      setIsPwValid(false);
-      return;
-    }
-
-    pwRegexCheck();
-    if (pwCheck !== '') pwMatchCheck();
-  };
-
-  // pwCheck
-  const onBlurPwCheck = () => {
-    if (pwCheck === '') {
-      setMsgJoin({ ...msgJoin, pwCheck: null });
-      setIsPwCheckValid(false);
-      return;
-    }
-
-    if (pw === '') {
-      setMsgJoin({
-        ...msgJoin,
-        pw: {
-          msgContent: '필수 정보입니다.',
-          msgColor: 'red',
-        },
-        pwCheck: {
-          msgContent: '비밀번호가 일치하지 않습니다.',
-          msgColor: 'red',
-        },
-      });
-      setIsPwCheckValid(false);
-      return;
-    }
-    pwRegexCheck();
-    pwMatchCheck();
-  };
-
-  // Phone
+  ////////////////// Phone //////////////////
   const [phone, setPhone] = useState(['010', '', '']);
+
   useEffect(() => {
-    setJoinInfo({
-      ...joinInfo,
+    setJoinInputs({
+      ...joinInputs,
       phone: phone.join(''), // ['010', '1234', '5678'] -> '01012345678'
     });
   }, [...phone]);
+
   const handleChangePhone = (e) => {
     const newPhone = [...phone];
     if (e.target.name === 'phoneSecond') {
@@ -135,21 +115,17 @@ const JoinForm = ({
     }
     setPhone(newPhone);
   };
-  const phoneProps = {
-    title: '휴대폰번호',
-    phone,
-    setPhone,
-    handleChangePhone,
-  };
 
-  // Email
+  ////////////////// Email //////////////////
   const [email, setEmail] = useState(['', '']);
+
   useEffect(() => {
-    setJoinInfo({
-      ...joinInfo,
+    setJoinInputs({
+      ...joinInputs,
       email: email.join('@'), // email 비어있는게 '@'
     });
   }, [...email]);
+
   const handleChangeEmail = (e) => {
     const newEmail = [...email];
     if (e.target.name === 'emailFirst') {
@@ -159,86 +135,85 @@ const JoinForm = ({
     }
     setEmail(newEmail);
   };
-  const emailProps = { title: '이메일', email, handleChangeEmail };
 
-  ////////////////////////////////////
-
-  const handleChangeInfo = (e) => {
-    setJoinInfo({
-      ...joinInfo,
+  ////////////////// overall //////////////////
+  const handleChangeInput = (e) => {
+    setJoinInputs({
+      ...joinInputs,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const idProps = {
-    title: '아이디',
-    name: 'id',
-    onChange: handleChangeInfo,
-    btnMsg: '중복확인',
-  };
-  const pwProps = {
-    title: '비밀번호',
-    name: 'pw',
-    value: joinInfo.pw,
-    onChange: handleChangeInfo,
-    hasValidCheck: true,
-  };
-  const pwCheckProps = {
-    title: '비밀번호 재확인',
-    name: 'pwCheck',
-    value: joinInfo.pwCheck,
-    onChange: handleChangeInfo,
-    hasValidCheck: true,
-  };
-  const nameProps = {
-    title: '이름',
-    name: 'name',
-    value: joinInfo.name,
-    onChange: handleChangeInfo,
-  };
-  const sellerNumProps = {
-    title: '사업자 등록번호',
-    name: 'sellerNum',
-    value: joinInfo.sellerNum,
-    onChange: handleChangeInfo,
-    btnMsg: '인증',
-  };
-  const storeNameProps = {
-    title: '스토어 이름',
-    name: 'storeName',
-    value: joinInfo.storeName,
-    onChange: handleChangeInfo,
   };
 
   return (
     <div>
       <InputWithBtn
-        {...idProps}
-        msgInfo={msgJoin.id}
-        BtnClick={checkId}
+        title="아이디"
+        name="id"
+        btnMsg="중복확인"
+        BtnClick={onClickIdCheck}
         ref={idRef}
-        value={id}
-        onBlur={onBlurIdCheck}
+        value={joinInputs.id}
+        error={joinErrors.id}
+        onBlur={checkIdRegex}
+        onChange={handleChangeInput}
       />
       <InputPassword
-        {...pwProps}
-        msgInfo={msgJoin.pw}
+        title="비밀번호"
+        name="pw"
+        hasValidCheck={true}
         isValid={isPwValid}
+        value={joinInputs.pw} // joinInputs[name] ?
+        error={joinErrors.pw}
         onBlur={onBlurPw}
+        onChange={handleChangeInput}
       />
       <InputPassword
-        {...pwCheckProps}
-        msgInfo={msgJoin.pwCheck}
+        title="비밀번호 재확인"
+        name="pwCheck"
+        hasValidCheck={true}
         isValid={isPwCheckValid}
-        onBlur={onBlurPwCheck}
+        value={joinInputs.pwCheck}
+        error={joinErrors.pwCheck}
+        onBlur={onBlurPw}
+        onChange={handleChangeInput}
       />
-      <InputName {...nameProps} msgInfo={msgJoin.name} />
-      <InputPhone {...phoneProps} msgInfo={msgJoin.phone} />
-      <InputEmail {...emailProps} msgInfo={msgJoin.email} />
+      <InputName
+        title="이름"
+        name="name"
+        value={joinInputs.name}
+        error={joinErrors.name}
+        onChange={handleChangeInput}
+      />
+      <InputPhone
+        title="휴대폰번호"
+        phone={phone}
+        setPhone={setPhone}
+        error={joinErrors.phone}
+        handleChange={handleChangePhone}
+      />
+      <InputEmail
+        title="이메일"
+        email={email}
+        error={joinErrors.email}
+        handleChange={handleChangeEmail}
+      />
       {userType === 'SELLER' && (
         <>
-          <InputWithBtn {...sellerNumProps} msgInfo={msgJoin.sellerNum} />
-          <InputName {...storeNameProps} msgInfo={msgJoin.storeName} />
+          <InputWithBtn
+            title="사업자 등록번호"
+            name="sellerNum"
+            btnMsg="인증"
+            value={joinInputs.sellerNum}
+            error={joinErrors.sellerNum}
+            onChange={handleChangeInput}
+          />
+          <InputName
+            title="스토어 이름"
+            name="storeName"
+            value={joinInputs.storeName}
+            error={joinErrors.storeName}
+            onChange={handleChangeInput}
+          />
         </>
       )}
     </div>
