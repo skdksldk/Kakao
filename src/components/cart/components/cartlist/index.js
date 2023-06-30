@@ -1,3 +1,3 @@
-import CartList from "./CartList";
+import Cartlist from "./Cartlist";
 
-export { CartList };
+export { Cartlist };
