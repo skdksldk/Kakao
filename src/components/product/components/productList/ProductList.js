@@ -2,26 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
-import ErrorMessage from '../ErrorMessage';
-import Loading from '../Loading';
-import { API_URL } from '/src/utils/api';
 import { useQuery } from 'react-query';
-
-const getProducts = async () => {
-  return fetch(`${API_URL}/products/`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error('http 에러');
-      return res.json();
-    })
-    .then((data) => data.results)
-    .catch((e) => console.error(e));
-};
-
+import ErrorMessage from '../../../ErrorMessage';
+import Loading from '../../../Loading';
+import { getProducts } from '../../utils/productRequest';
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -41,10 +25,7 @@ const ProductList = () => {
           {products.map((item) => (
             <ProductItem
               key={item.product_id}
-              imgSrc={item.image}
-              desc={item.product_info}
-              title={item.product_name}
-              price={item.price}
+              item={item}
               onClick={() => {
                 navigate(`/product/${item.product_id}`);
               }}

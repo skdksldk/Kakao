@@ -51,7 +51,7 @@ const PriceContainer = styled.article`
   width: 1280px;
   margin-top: 80px;
   margin-bottom: 40px;
-  padding: 40px 100px;
+  padding: 40px 70px;
   background-color: #f2f2f2;
   border-radius: 10px;
   @media screen and (max-width: 1024px) {

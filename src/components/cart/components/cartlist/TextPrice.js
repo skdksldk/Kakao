@@ -18,7 +18,8 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  width: 130px;
+  
   h2 {
     font-size: 16px;
     line-height: 20px;

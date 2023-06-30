@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Product from '../components/product/Product';
+import { Product } from '../components/product';
 
 const ProductPage = () => {
   useEffect(() => window.scrollTo(0, 0), []);
