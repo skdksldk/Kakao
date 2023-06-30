@@ -43,6 +43,15 @@ const Img = styled.img`
 
 const FormContainer = styled.section`
   width: 550px;
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
 
 const FormType = styled.article`

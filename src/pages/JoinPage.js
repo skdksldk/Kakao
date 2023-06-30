@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import JoinForm from '../components/join/JoinForm';
-import JoinFooter from '../components/join/JoinFooter';
+import JoinForm from '../components/join/components/joinForm/JoinForm';
+import JoinFooter from '../components/join/components/joinFooter/JoinFooter';
 import ImgLogo from '/public/assets/kakao.jpg';
 
 const JoinPage = () => {
@@ -69,6 +69,15 @@ const Img = styled.img`
 
 const FormContainer = styled.section`
   width: 550px;
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
 
 const FormType = styled.article`
