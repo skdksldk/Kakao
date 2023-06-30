@@ -6,7 +6,7 @@ import CartHeader from './components/CartHeader';
 import CartNothing from './components/CartNothing';
 import CartNoaccess from './components/CartNoaccess';
 import ErrorMessage from '../ErrorMessage';
-import { Cartlist } from './components/cartlist';
+import { CartList } from './components/cartList';
 import { getCartDetails } from './utils/cartRequest';
 
 const Cart = () => {
@@ -31,7 +31,7 @@ const Cart = () => {
       {data.length === 0 ? (
         <CartNothing />
       ) : (
-        <Cartlist cartItems={data} refetch={refetch} />
+        <CartList cartItems={data} refetch={refetch} />
       )}
     </CartContainer>
   );
