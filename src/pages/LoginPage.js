@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ImgLogo from '/public/assets/kakao.jpg';
-import LoginForm from '../components/login/LoginForm';
-import LoginFooter from '../components/login/LoginFooter';
+import { LoginForm, LoginFooter } from '../components/login/';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -17,9 +16,7 @@ const LoginPage = () => {
           <button onClick={() => setUserType('BUYER')}>구매회원 로그인</button>
           <button onClick={() => setUserType('SELLER')}>판매회원 로그인</button>
         </FormType>
-        <FormContent>
-          <LoginForm userType={userType} />
-        </FormContent>
+        <LoginForm userType={userType} />
       </FormContainer>
       <LoginFooter />
     </Container>
@@ -46,15 +43,6 @@ const Img = styled.img`
 
 const FormContainer = styled.section`
   width: 550px;
-  @media screen and (max-width: 1024px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    max-width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    max-width:100%;
-  }
 `;
 
 const FormType = styled.article`
@@ -98,13 +86,4 @@ const FormType = styled.article`
     height: 25px;
     background-color: #fff;
   }
-`;
-
-const FormContent = styled.section`
-  position: relative;
-  z-index: 10;
-  padding: 35px;
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
-  border-radius: 10px;
 `;
