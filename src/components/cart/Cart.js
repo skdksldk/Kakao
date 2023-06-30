@@ -6,7 +6,7 @@ import CartHeader from './components/CartHeader';
 import CartNothing from './components/CartNothing';
 import CartNoaccess from './components/CartNoaccess';
 import ErrorMessage from '../ErrorMessage';
-import { CartList } from './components/cartList';
+import CartList from './components/cartlist/CartList';
 import { getCartDetails } from './utils/cartRequest';
 
 const Cart = () => {
@@ -22,7 +22,7 @@ const Cart = () => {
   if (isSeller) return <CartNoaccess type={'seller'} />;
   if (isLoading) return <Loading />;
   if (error)
-    return <ErrorMessage emoji="🙀" message={`에러 발생: ${error.message}`} />;
+    return <ErrorMessage emoji="😭" message={`에러 발생: ${error.message}`} />;
 
   return (
     <CartContainer>
