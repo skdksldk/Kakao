@@ -22,7 +22,7 @@ const Cart = () => {
   if (isSeller) return <CartNoaccess type={'seller'} />;
   if (isLoading) return <Loading />;
   if (error)
-    return <ErrorMessage emoji="😭" message={`에러 발생: ${error.message}`} />;
+    return <ErrorMessage emoji="🙀" message={`에러 발생: ${error.message}`} />;
 
   return (
     <CartContainer>
