@@ -289,6 +289,15 @@ const FormContainer = styled.section`
   background: #ffffff;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -315,6 +324,15 @@ const FooterContainer = styled.div`
   button {
     margin-top: 34px;
   }
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
+  }
 `;
 
 const Checkbox = styled.input`
@@ -327,5 +345,14 @@ const Checkbox = styled.input`
   }
   &:checked + label {
     background-image: url(${IconChecked});
+  }
+  @media screen and (max-width: 1024px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 768px) {
+    max-width:100%;
+  }
+  @media screen and (max-width: 576px) {
+    max-width:100%;
   }
 `;
