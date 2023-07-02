@@ -3,10 +3,10 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import Loading from '/src/components/Loading';
 import ErrorMessage from '/src/components/ErrorMessage';
-import { CartList } from './components/cartList/';
-import CartHeader from './components/CartHeader';
-import CartNothing from './components/CartNothing';
-import CartNoaccess from './components/CartNoaccess';
+import { CartList } from './components/CartList';
+import { CartHeader } from './components/CartHeader';
+import CartNothing from './CartNothing';
+import CartNoaccess from './CartNoaccess';
 import { getCartDetails } from '../../utils/cartRequest';
 
 const Cart = () => {

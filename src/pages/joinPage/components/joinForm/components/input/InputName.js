@@ -1,27 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputBox from './InputBox';
-import MessageError from './MessageError';
+import MessageError from '../message/MessageError';
 
-const InputPassword = ({ isValid, ...props }) => {
-  const { title, error } = props;
-
+const InputName = ({ title, error, ...props }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <InputBox type="password" isValid={isValid} {...props} />
+      <InputBox {...props} />
       {error && <MessageError content={error} />}
     </Container>
   );
 };
 
-export default InputPassword;
+export default InputName;
 
 const Container = styled.article`
-  position: relative;
   display: flex;
   flex-direction: column;
 
+  div {
+    margin-top: 10px;
+    display: flex;
+    button {
+      margin-left: 12px;
+    }
+  }
   input {
     margin-top: 10px;
   }
