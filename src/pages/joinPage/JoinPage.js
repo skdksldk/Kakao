@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { JoinForm } from './components/JoinForm';
+import { JoinForm } from './components/joinForm';
 import { Container, FormType } from './style';
 import ImgLogo from '/public/assets/kakao.jpg';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container } from './style';
+import styled from 'styled-components';
 
 const LoginFooter = () => {
   const navigate = useNavigate();
@@ -19,4 +19,23 @@ const LoginFooter = () => {
 
 export default LoginFooter;
 
+const Container = styled.ul`
+  margin-top: 30px;
+  display: flex;
 
+  li {
+    font-size: 16px;
+    line-height: 20px;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+    & + li::before {
+      content: '|';
+      margin-right: 10px;
+    }
+  }
+
+  a {
+    cursor: pointer;
+  }
+`;

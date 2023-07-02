@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ImgLogo from '/public/assets/kakao.jpg';
-import { LoginForm } from './components/LoginForm';
-import { LoginFooter } from './components/LoginFooter';
+import { LoginForm } from './components/loginForm';
+import { LoginFooter } from './components/loginFooter';
 import { Container, FormContainer, FormType } from './style';
 
 
