@@ -8,8 +8,10 @@ import CartHeader from './components/CartHeader';
 import CartNothing from './components/CartNothing';
 import CartNoaccess from './components/CartNoaccess';
 import { getCartDetails } from '../../utils/cartRequest';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const isSeller = localStorage.getItem('userType') === 'SELLER' ? true : false;
   const isLogined = localStorage.getItem('token');
 
@@ -17,6 +19,13 @@ const Cart = () => {
     'cartItems',
     getCartDetails,
   );
+
+  const onClickCartOrder = () => {
+    navigate('/order', { state: { data: data, order_kind: 'cart_order' } });
+  };
+  const onClickCartOrderOne = () => {
+    navigate('/order', { state: { data: data, order_kind: 'cart_one_order' } });
+  };
 
   if (!isLogined) return <CartNoaccess type={'login'} />;
   if (isSeller) return <CartNoaccess type={'seller'} />;
@@ -31,7 +40,12 @@ const Cart = () => {
       {data.length === 0 ? (
         <CartNothing />
       ) : (
-        <CartList cartItems={data} refetch={refetch} />
+        <CartList 
+          cartItems={data} 
+          refetch={refetch} 
+          onClickCartOrder={onClickCartOrder}
+          onClickCartOrderOne={onClickCartOrderOne}
+        />
       )}
     </CartContainer>
   );
