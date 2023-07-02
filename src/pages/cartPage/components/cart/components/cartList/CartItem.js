@@ -105,7 +105,6 @@ const Container = styled.article`
   display: flex;
   align-items: center;
   position: relative;
-
   width: 1280px;
   height: 200px;
   padding-top: 20px;
@@ -116,14 +115,27 @@ const Container = styled.article`
   & + article {
     margin-top: 10px;
   }
-  @media screen and (max-width: 1024px) {
-    width:100%;
+  @media screen and (max-width: 1400px) {
+    max-width:100%;
+    height:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
+  @media screen and (max-width: 1080px) {
+    max-width:100%;
+    height:100%;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
@@ -135,15 +147,6 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOff}) center/20px 20px;
-    @media screen and (max-width: 1024px) {
-      width:85px;
-    }
-    @media screen and (max-width: 768px) {
-      width:110px;
-    }
-    @media screen and (max-width: 576px) {
-      width:100px;
-    }
   }
   &:checked + label {
     background-image: url(${IconOn});
@@ -165,15 +168,6 @@ const ItemInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const TextGray = styled.p`
@@ -191,7 +185,7 @@ const TextPrice = styled.p`
   margin-top: 10px;
   flex-grow: 1;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 20px;
   color: #000000;
 `;
@@ -201,17 +195,6 @@ const AmountContainer = styled.div`
     margin: 0 auto;
   }
   width: 250px;
-  @media screen and (max-width: 1024px) {
-    margin-top:6%;
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    margin-top:6%; 
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
 `;
 
 const PriceContainer = styled.div`
@@ -227,15 +210,6 @@ const PriceContainer = styled.div`
   }
   button {
     margin-top: 26px;
-  }
-  @media screen and (max-width: 1024px) {
-    width:100%;
-  }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
   }
 `;
 

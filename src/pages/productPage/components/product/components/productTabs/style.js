@@ -6,15 +6,13 @@ export const Container = styled.section`
   width: 1280px;
 
   @media screen and (max-width: 1400px) {
-    width: 100vw;
-    padding-left: 60px;
-    padding-right: 60px;
+    width: 300px;
   }
+
 `;
 
 export const TabContainer = styled.article`
   margin-bottom: 30px;
-
   display: flex;
   width: 100%;
 `;
@@ -24,10 +22,10 @@ export const TabButton = styled.button`
   padding: 18px 0 12px;
   font-weight: 700;
   font-size: 18px;
-  color: #21bf48;
+  color: #ff7f00;
   background-color: #ffffff;
   border: none;
-  border-bottom: 6px solid #21bf48;
+  border-bottom: 6px solid #ff7f00;
 
   ${({ chosen }) =>
     !chosen &&

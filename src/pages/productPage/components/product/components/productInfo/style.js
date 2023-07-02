@@ -6,7 +6,7 @@ export const Container = styled.section`
   width: 630px;
 
   @media screen and (max-width: 1400px) {
-    width: 500px;
+    width: 300px;
   }
 `;
 
@@ -92,26 +92,56 @@ export const Delivery = styled.p`
   font-size: 16px;
   line-height: 20px;
   color: #767676;
+  @media screen and (max-width: 1400px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 1080px) {
+    font-size: 10px;
+  }
 `;
 
 export const TotalAmount = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 23px;
   color: #767676;
   span {
     color: #21bf48;
   }
+  @media screen and (max-width: 1400px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 1080px) {
+    font-size: 10px;
+  }
 `;
 
 export const TotalPrice = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 23px;
   color: #21bf48;
   span {
     font-weight: 700;
-    font-size: 36px;
+    font-size: 26px;
     line-height: 45px;
     display: inline-block;
     margin-bottom: -8px;
+  }
+  @media screen and (max-width: 1400px) {
+    span {
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 45px;
+      display: inline-block;
+      margin-bottom: -8px;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    span {
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 45px;
+      display: inline-block;
+      margin-bottom: -8px;
+    }
   }
 `;

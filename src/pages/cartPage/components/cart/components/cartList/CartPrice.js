@@ -34,14 +34,27 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 1024px) {
-    width:100%;
+  @media screen and (max-width: 1400px) {
+    max-width:100%;
+    height:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
-  @media screen and (max-width: 768px) {
-    width:100%;
-  }
-  @media screen and (max-width: 576px) {
-    width:100%;
+  @media screen and (max-width: 1080px) {
+    max-width:100%;
+    height:100%;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
@@ -54,13 +67,27 @@ const PriceContainer = styled.article`
   padding: 40px 70px;
   background-color: #f2f2f2;
   border-radius: 10px;
-  @media screen and (max-width: 1024px) {
-    width:100%;
+  @media screen and (max-width: 1400px) {
+    max-width:100%;
+    height:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
-  @media screen and (max-width: 768px) {
-    width:100%;
+  @media screen and (max-width: 1080px) {
+    max-width:100%;
+    height:100%;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-  @media screen and (max-width: 576px) {
-    width:100%;
-  }
+ 
 `;

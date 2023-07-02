@@ -34,7 +34,7 @@ const Product = () => {
 export default Product;
 
 const Container = styled.main`
-  width: 100vw;
+  width: 80vw;
   padding-top: 80px;
   padding-bottom: 80px;
   align-self: center;
@@ -54,18 +54,35 @@ const ContainerUpper = styled.section`
   gap: 50px;
 
   & > img {
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
   }
 
   @media screen and (max-width: 1400px) {
     & > img {
-      width: 500px;
-      height: 500px;
+      width: 300px;
+      height: 300px;
     }
+    padding-top: 80px;
+    padding-bottom: 80px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 140px;
   }
   @media screen and (max-width: 1080px) {
+    & > img {
+      width: 300px;
+      height: 300px;
+    }
     flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 140px;
   }
 `;
