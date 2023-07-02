@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
@@ -8,10 +8,12 @@ import ImgCart from '/public/assets/icon-shopping-cart.svg';
 import ImgUser from '/public/assets/icon-user.svg';
 import ImgBag from '/public/assets/icon-shopping-bag.svg';
 import SellerButton from './button/SellerButton';
+import { checkIfTokenValid } from '../utils/api';
 
 const Header = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const isSeller = localStorage.getItem('userType') === 'SELLER' ? true : false;
 
   const onMypageClick = () => {
@@ -21,6 +23,13 @@ const Header = () => {
     localStorage.clear();
     window.location.reload();
   };
+
+   // token이 valid하지 않으면(로그인 세션이 만료되면) 헤더 리렌더링
+   const checkTokenValid = () => {
+    if (!isLoggedIn) return;
+    if (!checkIfTokenValid(localStorage.getItem('token'))) setIsLoggedIn(false);
+  };
+  useEffect(checkTokenValid, []);
 
   return (
     <Container>
