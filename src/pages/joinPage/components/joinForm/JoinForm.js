@@ -274,7 +274,15 @@ const JoinForm = ({ userType }) => {
           content={modalData[modalIdx].content}
         />
       )}
-      {successJoin && <JoinSuccessModal />}
+      {successJoin && (
+        <JoinSuccessModal
+          emoji="🎉"
+          title="회원가입을 완료했어요!"
+          buttonMessage="로그인하러 가기"
+          addressToNavigate="/login"
+          ifReplace={true}
+        />
+      )}
     </>
   );
 };
