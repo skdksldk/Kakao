@@ -8,7 +8,7 @@ import {
 } from './utils/myInfoRequest';
 import { getProductDetail } from '/src/utils/product';
 
-const myinfoPage = () => {
+const  MyInfoPage = () => {
   const {
     data: list,
     isLoading: isLoadingList,
@@ -36,4 +36,4 @@ const myinfoPage = () => {
   );
 };
 
-export default myinfoPage;
+export default MyInfoPage;
