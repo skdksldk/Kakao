@@ -18,6 +18,8 @@ export default SideBar;
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  width: 250px;
+  position: relative;
 `;
 
 const Button = styled.button`
@@ -25,7 +27,7 @@ const Button = styled.button`
   font-size: 16px;
   line-height: 20px;
   color: #ffffff;
-  background-color: #21bf48;
+  background-color:  #ff7f00;
   border: none;
   border-radius: 5px;
   ${({ chosen }) =>

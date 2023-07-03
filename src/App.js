@@ -9,7 +9,8 @@ import {
   CartPage, 
   OrderPage,
   MyInfoPage,
-  NotFoundPage 
+  NotFoundPage,
+  SellerPage,
 } from './pages';
 import './App.css';
 
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="cart" element={<CartPage />} />
         <Route path="order" element={<OrderPage />} />
         <Route path="mypage" element={<MyInfoPage />} />
+        <Route path="seller" element={<SellerPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </QueryClientProvider>

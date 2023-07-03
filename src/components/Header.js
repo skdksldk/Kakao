@@ -19,6 +19,12 @@ const Header = () => {
   const onMypageClick = () => {
     navigate('/mypage');
   };
+
+  const onSellerCenterClick = () => {
+    navigate('/seller');
+  };
+
+
   const onLogoutClick = () => {
     localStorage.clear();
     window.location.reload();
@@ -64,7 +70,13 @@ const Header = () => {
             children="로그인"
           />
         )}
-        {isSeller && <SellerButton iconSrc={ImgBag} children="판매자 센터" />}
+          {isSeller && (
+          <SellerButton
+            iconSrc={ImgBag}
+            children="판매자 센터"
+            onClick={onSellerCenterClick}
+          />
+        )}
       </SubContainer>
     </Container>
   );

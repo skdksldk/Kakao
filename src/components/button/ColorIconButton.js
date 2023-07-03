@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ColorIconButton = ({ iconSrc, children }) => {
+const ColorIconButton = ({ iconSrc, children, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       {iconSrc && <img src={iconSrc} />}
       {children}
     </Container>
@@ -22,7 +22,7 @@ const Container = styled.button`
   border: none;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #21bf48;
+  background-color: #ff7f00;
   font-size: 18px;
   font-weight: 500;
 `;
