@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { LoginPage, JoinPage, NotFoundPage } from './pages';
+import { loginPage, joinPage, notFoundPage } from './pages';
 import {
   Main,
   Product,

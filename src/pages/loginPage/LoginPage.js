@@ -7,7 +7,7 @@ import { LoginFooter } from './components/loginFooter';
 import { Container, FormContainer, FormType } from './style';
 
 
-const LoginPage = () => {
+const loginPage = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState('BUYER');
 
@@ -26,7 +26,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default loginPage;
 
 
 const Img = styled.img`
