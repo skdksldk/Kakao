@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { 
-  MainPage, 
-  LoginPage, 
-  JoinPage, 
-  ProductPage, 
-  CartPage, 
-  OrderPage,
-  MyInfoPage,
-  NotFoundPage,
-  SellerPage,
-} from './pages';
+import {
+  Main,
+  Product,
+  Cart,
+  Order,
+  MyInfo,
+  Dashboard,
+  UploadProduct,
+} from './pages/pageContents';
+import { PageLayout } from './pages/PageLayout';
 import './App.css';
 
 const queryClient = new QueryClient();
@@ -22,14 +21,19 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="product/:id" element={<ProductPage />} />
+         <Route path="/" element={<PageLayout/>}>
+          <Route index element={<Main />} />
+          <Route path="product/:id" element={<Product />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="order" element={<Order />} />
+          <Route path="mypage" element={<MyInfo />} />
+          <Route path="seller">
+            <Route index element={<Dashboard />} />
+            <Route path="upload_product" element={<UploadProduct/>} />
+          </Route>
+        </Route>
         <Route path="login" element={<LoginPage />} />
         <Route path="join" element={<JoinPage />} />
-        <Route path="cart" element={<CartPage />} />
-        <Route path="order" element={<OrderPage />} />
-        <Route path="mypage" element={<MyInfoPage />} />
-        <Route path="seller" element={<SellerPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </QueryClientProvider>
