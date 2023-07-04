@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { LoginPage, JoinPage, NotFoundPage } from './pages';
 import {
   Main,
   Product,
@@ -10,6 +9,9 @@ import {
   MyInfo,
   Dashboard,
   UploadProduct,
+  Login,
+  Join,
+  NotFound
 } from './pages/pageContents';
 import { PageLayout } from './pages/PageLayout';
 import './App.css';
@@ -27,14 +29,14 @@ const App = () => {
           <Route path="cart" element={<Cart />} />
           <Route path="order" element={<Order />} />
           <Route path="mypage" element={<MyInfo />} />
+          <Route path="login" element={<Login />} />
+         <Route path="join" element={<Join />} />
+         <Route path="*" element={<NotFound />} />
           <Route path="seller">
             <Route index element={<Dashboard />} />
             <Route path="upload_product" element={<UploadProduct />} />
           </Route>
         </Route>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="join" element={<JoinPage />} />
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </QueryClientProvider>
   );

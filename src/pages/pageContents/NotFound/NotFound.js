@@ -4,7 +4,7 @@ import NotFoundIcon from '/public/assets/ico_empty_ryan.png';
 import ColorButton from '/src/components/button/ColorButton';
 import { ButtonContainer, Container, TextContainer } from './style';
 
-const NotFoundPage = () => {
+const NotFound = () => {
   const navigate = useNavigate();
   
   return (
@@ -35,5 +35,5 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFound;
 
