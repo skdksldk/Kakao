@@ -1,3 +1,3 @@
-import joinPage from './joinPage';
+import JoinPage from './JoinPage';
 
-export { joinPage };
+export { JoinPage };
