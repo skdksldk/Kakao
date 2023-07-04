@@ -1,5 +1,5 @@
-import { loginPage } from './loginPage';
-import { joinPage } from './joinPage';
-import { notFoundPage } from './notFoundPage';
+import { LoginPage } from './LoginPage';
+import { JoinPage } from './JoinPage';
+import { NotFoundPage } from './NotFoundPage';
 
-export { loginPage, joinPage, notFoundPage };
+export { LoginPage, JoinPage, NotFoundPage };

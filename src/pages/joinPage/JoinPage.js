@@ -5,7 +5,7 @@ import { JoinForm } from './components/joinForm';
 import { Container, FormType } from './style';
 import ImgLogo from '/public/assets/kakao.jpg';
 
-const joinPage = () => {
+const JoinPage = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState('BUYER');
 
@@ -21,7 +21,7 @@ const joinPage = () => {
   );
 };
 
-export default joinPage;
+export default JoinPage;
 
 
 const Img = styled.img`
