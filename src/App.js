@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { InPage, OutPage, NoFoundPage } from './pages';
+import { LoginPage, JoinPage, NotFoundPage } from './pages';
 import {
   Main,
   Product,
@@ -32,9 +32,9 @@ const App = () => {
             <Route path="upload_product" element={<UploadProduct/>} />
           </Route>
         </Route>
-        <Route path="login" element={<InPage />} />
-        <Route path="join" element={<OutPage />} />
-        <Route path="*" element={<NoFoundPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="join" element={<JoinPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </QueryClientProvider>
   );
