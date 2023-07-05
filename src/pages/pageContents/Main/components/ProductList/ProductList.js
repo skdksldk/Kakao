@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import ErrorMessage from '/src/components/ErrorMessage';
+import { PageError } from '/src/components/PageError';
 import Loading from '/src/components/Loading';
 import { ProductItem } from './components/ProductItem';
 import { getProducts } from '../../utils/productsRequest';
@@ -22,7 +22,7 @@ const ProductList = () => {
   return (
     <>
       {products.length === 0 ? (
-        <ErrorMessage emoji="😭" message="등록된 상품이 없어요!" />
+        <PageError emoji="😭" message="등록된 상품이 없어요!" />
       ) : (
         <Container>
           {products.map((item) => (

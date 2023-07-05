@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ProductInfo } from './components/productInfo';
 import { ProductTabs } from './components/productTabs';
 import Loading from '/src/components/Loading';
-import ErrorMessage from '/src/components/ErrorMessage';
+import  { PageError } from '/src/components/PageError';
 import { getProductDetail } from '/src/utils/product';
 
 const Product = () => {
@@ -16,9 +16,9 @@ const Product = () => {
 
   if (isLoading) return <Loading />;
   if (data.detail === '찾을 수 없습니다.')
-    return <ErrorMessage emoji="😶‍🌫️" message="해당 상품은 존재하지 않습니다." />;
+    return <PageError emoji="😶‍🌫️" message="해당 상품은 존재하지 않습니다." />;
   if (error)
-    return <ErrorMessage emoji="😭" message={`에러 발생: ${error.message}`} />;
+    return <PageError emoji="😭" message={`에러 발생: ${error.message}`} />;
 
   return (
     <Container>
