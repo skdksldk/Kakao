@@ -33,7 +33,8 @@ const Container = styled.section`
   flex-direction: column;
   width: 250px;
   position: relative;
-
+  flex-shrink: 0;
+  
   button {
     color: #000000;
     background-color: #ffffff;
