@@ -6,7 +6,7 @@ export const Container = styled.section`
   width: 1280px;
 
   @media screen and (max-width: 1400px) {
-    width: 300px;
+    max-width: 100%;
   }
 
 `;
@@ -14,7 +14,7 @@ export const Container = styled.section`
 export const TabContainer = styled.article`
   margin-bottom: 30px;
   display: flex;
-  width: 100%;
+  max-width: 100%;
 `;
 
 export const TabButton = styled.button`

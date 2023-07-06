@@ -44,7 +44,13 @@ const Container = styled.main`
   gap: 140px;
 
   @media screen and (max-width: 1400px) {
-    gap: 70px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -64,13 +70,13 @@ const ContainerUpper = styled.section`
       width: 300px;
       height: 300px;
     }
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 140px;
+    gap: 10px;
   }
   @media screen and (max-width: 1080px) {
     & > img {
@@ -78,11 +84,11 @@ const ContainerUpper = styled.section`
       height: 300px;
     }
     flex-direction: column;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     align-self: center;
     display: flex;
     align-items: center;
-    gap: 140px;
+    gap: 10px;
   }
 `;

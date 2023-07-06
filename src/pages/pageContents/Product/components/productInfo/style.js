@@ -6,7 +6,7 @@ export const Container = styled.section`
   width: 630px;
 
   @media screen and (max-width: 1400px) {
-    width: 300px;
+   width: 100%;
   }
 `;
 

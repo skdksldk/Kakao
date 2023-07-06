@@ -152,6 +152,22 @@ const Checkbox = styled.input`
     margin-top: 1px;
     margin-left: 30px;
     background: url(${IconOff}) center/20px 20px;
+    @media screen and (max-width: 1400px) {
+      margin-right: 96%;
+      margin-top: 5px;
+    }
+    @media screen and (max-width: 1080px) {
+      margin-right: 96%;
+      margin-top: 5px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-right: 95%;
+      margin-top: 5px;
+    }
+    @media screen and (max-width: 576px) {
+      margin-right: 86%;
+      margin-top: 5px;
+    }
   }
   &:checked + label {
     background-image: url(${IconOn});

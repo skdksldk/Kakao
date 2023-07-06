@@ -57,7 +57,7 @@ const OrderPayInfo = ({ data, onClickPay }) => {
         <ColorButton
           size="L"
           width="220px"
-          color={checkedTerm ? 'green' : 'gray'}
+          color={checkedTerm ? 'orange' : 'gray'}
           onClick={checkedTerm ? onClickPay : () => {}}
         >
           결제하기
