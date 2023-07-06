@@ -153,7 +153,7 @@ export const UploadProduct = () => {
             <div>
               <ColorButton
                 size="MS"
-                width="220px"
+                width="150px"
                 data-method="DELIVERY"
                 onClick={onClickShippingMethod}
                 color={
@@ -164,7 +164,7 @@ export const UploadProduct = () => {
               </ColorButton>
               <ColorButton
                 size="MS"
-                width="220px"
+                width="150px"
                 data-method="PARCEL"
                 onClick={onClickShippingMethod}
                 color={
@@ -225,7 +225,7 @@ export const UploadProduct = () => {
       </Content>
       <Modal
         title="상품 등록 성공 🥳"
-        visible={isModalVisible}
+        open={isModalVisible}
         footer={[
           <Button key="back" onClick={onClickUploadMore}>
             상품 더 등록하기
@@ -233,7 +233,7 @@ export const UploadProduct = () => {
           <Button
            key="link"
            type="primary"
-           onClick={() => navigate('/seller_center')}
+           onClick={() => navigate('/seller')}
           >
           판매자 센터 가기
           </Button>,

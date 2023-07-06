@@ -10,16 +10,26 @@ export const Container = styled.main`
     font-size: 36px;
     line-height: 44px;
   }
+  @media screen and (max-width: 1000px) {
+    max-width: 100%;
+  }
 `;
 
 export const Content = styled.section`
   display: flex;
   gap: 80px;
+  @media screen and (max-width: 1000px) {
+    gap: 40px;
+    flex-wrap: wrap;
+  }
 `;
 
 export const Warning = styled.section`
   flex-shrink: 0;
   width: 320px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
   h3 {
     color: #eb5757;
     font-weight: 500;
@@ -39,12 +49,18 @@ export const Form = styled.section`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+  @media screen and (max-width: 1000px) {
+    max-width: 100%;
+  }
   section:nth-child(1) {
     img {
       width: 460px;
       height: 460px;
       object-fit: cover;
       cursor: pointer;
+      @media screen and (max-width: 1000px) {
+        max-width: 100%;
+      }
     }
     input {
       display: none;
@@ -56,6 +72,9 @@ export const Form = styled.section`
       padding: 16px;
       border: 1px solid #c4c4c4;
       border-radius: 5px;
+      @media screen and (max-width: 1000px) {
+        max-width: 100%;
+      }
       &:nth-child(2) {
         width: 100%;
       }
@@ -78,6 +97,9 @@ export const Form = styled.section`
       padding: 16px;
       border: 1px solid #c4c4c4;
       border-radius: 5px;
+      @media screen and (max-width: 1000px) {
+        max-width: 100%;
+      }
     }
     div {
       margin-top: 50px;
