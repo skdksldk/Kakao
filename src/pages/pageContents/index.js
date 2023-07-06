@@ -6,6 +6,6 @@ import { Join } from './Join';
 import { NotFound } from './NotFound';
 import { Order } from './Order';
 import { Product } from './Product';
-import { Dashboard, UploadProduct } from './SellerCenter';
+import { Dashboard, UploadProduct, EditProduct } from './SellerCenter';
 
-export { Main, Product, Cart, Order, MyInfo, Dashboard, UploadProduct, Login, Join, NotFound};
+export { Main, Product, Cart, Order, MyInfo, Dashboard, UploadProduct,EditProduct, Login, Join, NotFound};

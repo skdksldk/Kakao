@@ -11,7 +11,8 @@ import {
   UploadProduct,
   Login,
   Join,
-  NotFound
+  NotFound,
+  EditProduct,
 } from './pages/pageContents';
 import { PageLayout } from './pages/PageLayout';
 import './App.css';
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="seller">
             <Route index element={<Dashboard />} />
             <Route path="upload_product" element={<UploadProduct />} />
+            <Route path="edit_product/:id" element={<EditProduct />} />
           </Route>
         </Route>
       </Routes>

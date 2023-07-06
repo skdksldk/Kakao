@@ -5,6 +5,7 @@ export const Container = styled.main`
   flex-direction: column;
   gap: 40px;
   padding: 40px 50px;
+
   h2 {
     font-weight: 700;
     font-size: 36px;
@@ -20,6 +21,7 @@ export const Content = styled.section`
 export const Warning = styled.section`
   flex-shrink: 0;
   width: 320px;
+
   h3 {
     color: #eb5757;
     font-weight: 500;
@@ -39,6 +41,7 @@ export const Form = styled.section`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+
   section:nth-child(1) {
     img {
       width: 460px;
