@@ -140,7 +140,7 @@ export const EditProduct = () => {
           <div>
             <ColorButton
               size="MS"
-              width="220px"
+              width="150px"
               data-method="DELIVERY"
               onClick={onClickShippingMethod}
               color={
@@ -151,7 +151,7 @@ export const EditProduct = () => {
             </ColorButton>
             <ColorButton
               size="MS"
-              width="220px"
+              width="150px"
               data-method="PARCEL"
               onClick={onClickShippingMethod}
               color={

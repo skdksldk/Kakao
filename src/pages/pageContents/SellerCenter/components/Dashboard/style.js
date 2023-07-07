@@ -15,7 +15,7 @@ export const Title = styled.section`
   h2 {
     font-weight: 700;
     font-size: 36px;
-    line-height: 44px;
+    line-height: 40px;
     span {
       font-weight: 500;
       font-size: 36px;

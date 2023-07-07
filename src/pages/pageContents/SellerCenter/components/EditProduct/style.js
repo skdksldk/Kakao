@@ -5,7 +5,9 @@ export const Container = styled.main`
   flex-direction: column;
   gap: 40px;
   padding: 40px 50px;
-
+  @media screen and (max-width: 1000px) {
+    max-width: 100%;
+  }
   h2 {
     font-weight: 700;
     font-size: 36px;
@@ -48,9 +50,16 @@ export const Form = styled.section`
       height: 460px;
       object-fit: cover;
       cursor: pointer;
+      @media screen and (max-width: 1000px) {
+        max-width: 100%;
+      }
     }
     input {
       display: none;
+     
+    }
+    @media screen and (max-width: 1000px) {
+      width: 100%;
     }
   }
   section:nth-child(2) {
@@ -59,6 +68,9 @@ export const Form = styled.section`
       padding: 16px;
       border: 1px solid #c4c4c4;
       border-radius: 5px;
+      @media screen and (max-width: 1000px) {
+        max-width: 100%;
+      }
       &:nth-child(2) {
         width: 100%;
       }

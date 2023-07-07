@@ -42,6 +42,10 @@ const Header = styled.article`
   padding-bottom: 18px;
   border-bottom: 1px solid #c4c4c4;
 
+  @media screen and (max-width: 576px) {
+    display: flex;
+    flex-direction: column;
+  }
   div {
     text-align: center;
     font-weight: 400;

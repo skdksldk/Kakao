@@ -86,7 +86,11 @@ const Container = styled.article`
   padding-top: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #c4c4c4;
-
+  @media screen and (max-width: 576px) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
   img {
     margin-left: 30px;
     object-fit: cover;

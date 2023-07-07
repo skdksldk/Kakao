@@ -34,7 +34,9 @@ const Container = styled.section`
   width: 250px;
   position: relative;
   flex-shrink: 0;
-  
+  @media screen and (max-width: 576px) {
+    width:20%;
+  }
   button {
     color: #000000;
     background-color: #ffffff;
