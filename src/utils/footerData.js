@@ -4,7 +4,10 @@ import ImgYoutube from '/public/assets/icon-yt.svg';
 
 export const links = [
   {
-    desc: '호두샵 소개',
+    desc: '제휴문의',
+  },
+  {
+    desc: '고객센터',
   },
   {
     desc: '이용약관',
@@ -13,13 +16,7 @@ export const links = [
     desc: '개인정보처리방침',
   },
   {
-    desc: '전자금융거래약관',
-  },
-  {
-    desc: '청소년보호정책',
-  },
-  {
-    desc: '제휴문의',
+    desc: '지식재산권보호센터',
   },
 ];
 
@@ -42,8 +39,8 @@ export const socials = [
 ];
 
 export const companyInfo = [
-  '(주)HODU SHOP',
-  '제주특별자치도 제주시 동광고 137 제주코딩베이스캠프',
+  '(주)kakao',
+  '제주특별자치도 제주시 첨단로 242',
   '사업자 번호 : 000-0000-0000 | 통신판매업',
-  '대표 : 김호두',
+  '대표 : 카카오',
 ];
