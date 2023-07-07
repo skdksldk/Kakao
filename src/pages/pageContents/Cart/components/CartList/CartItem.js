@@ -216,6 +216,22 @@ const AmountContainer = styled.div`
     margin: 0 auto;
   }
   width: 250px;
+  @media screen and (max-width: 1400px) {
+    margin-left: 7%;
+    margin-top: 5px;
+  }
+  @media screen and (max-width: 1080px) {
+    margin-left: 7%;
+    margin-top: 5px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 7%;
+    margin-top: 5px;
+  }
+  @media screen and (max-width: 576px) {
+    margin-left: 7%;
+    margin-top: 5px;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -230,7 +246,19 @@ const PriceContainer = styled.div`
     color: #eb5757;
   }
   button {
-    margin-top: 26px;
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 1400px) {
+    margin-left: 7%;
+  }
+  @media screen and (max-width: 1080px) {
+    margin-left: 7%;
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 7%;
+  }
+  @media screen and (max-width: 576px) {
+    margin-left: 7%;
   }
 `;
 

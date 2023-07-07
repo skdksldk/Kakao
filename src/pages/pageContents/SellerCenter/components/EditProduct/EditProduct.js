@@ -209,7 +209,7 @@ export const EditProduct = () => {
       </Form>
       <Modal
         title="상품 수정 성공 🥳"
-        visible={isModalVisible}
+        open={isModalVisible}
         footer={[
           <Button key="back" onClick={() => navigate('/seller_center')}>
             판매자 센터 가기
