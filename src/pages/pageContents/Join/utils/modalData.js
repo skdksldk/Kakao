@@ -1,18 +1,14 @@
 export const modalData = [
   {
     title: '이용약관',
-    content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam maiores possimus illo nobis! Magnam necessitatibus perspiciatis reprehenderit suscipit nihil tempora earum? Nihil quidem ratione deleniti illo praesentium maxime. Aperiam, enim.
-Culpa officia inventore distinctio ex nesciunt itaque sequi, repellendus, sapiente dolore ratione fugiat magni. Animi quae ullam eaque iste iure eius, quod, cupiditate rerum deleniti laudantium, tempora nulla quaerat temporibus?
-Soluta, facilis eveniet blanditiis enim nobis consectetur eaque facere alias aspernatur ea eius officiis iste in quis natus hic sit vitae fuga. Quibusdam aliquam necessitatibus praesentium totam esse quam culpa.
-Nihil in debitis rem sequi reprehenderit dicta fugiat, pariatur cum sit cumque impedit sed necessitatibus enim ullam nisi ad magni eveniet magnam. Hic, consectetur minima? In, necessitatibus obcaecati? Blanditiis, nulla!
-Commodi maxime maiores enim? Quo beatae tempore eveniet quidem iusto necessitatibus deleniti! Porro saepe aperiam aliquam, voluptas maxime alias sunt quam laboriosam vel suscipit! Laboriosam et dicta dignissimos ipsum suscipit.`,
+    content: `1 조(목적)
+    이 약관은 주식회사 카카오(이하 "회사"라 함)가 운영하는 카카오마켓(이하 "판매채널"이라 합니다)을 통하여 제공하는 전자상거래 서비스(이하 "서비스"라 함)와 관련하여 "회사"와 "이용자"(제2조에 정합니다)의 권리와 의무, 책임사항 및 "이용자"의 "서비스" 이용절차에 관한 사항을 규정함을 목적으로 합니다. 이 약관은 PC 통신, 스마트폰(안드로이드폰, 아이폰 등) 앱 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용됩니다.`,
   },
   {
     title: '개인정보처리방침',
-    content: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam maiores possimus illo nobis! Magnam necessitatibus perspiciatis reprehenderit suscipit nihil tempora earum? Nihil quidem ratione deleniti illo praesentium maxime. Aperiam, enim.
-Culpa officia inventore distinctio ex nesciunt itaque sequi, repellendus, sapiente dolore ratione fugiat magni. Animi quae ullam eaque iste iure eius, quod, cupiditate rerum deleniti laudantium, tempora nulla quaerat temporibus?
-Soluta, facilis eveniet blanditiis enim nobis consectetur eaque facere alias aspernatur ea eius officiis iste in quis natus hic sit vitae fuga. Quibusdam aliquam necessitatibus praesentium totam esse quam culpa.
-Nihil in debitis rem sequi reprehenderit dicta fugiat, pariatur cum sit cumque impedit sed necessitatibus enim ullam nisi ad magni eveniet magnam. Hic, consectetur minima? In, necessitatibus obcaecati? Blanditiis, nulla!
-Commodi maxime maiores enim? Quo beatae tempore eveniet quidem iusto necessitatibus deleniti! Porro saepe aperiam aliquam, voluptas maxime alias sunt quam laboriosam vel suscipit! Laboriosam et dicta dignissimos ipsum suscipit.`,
+    content: `1. 카카오 개인정보 처리방침
+    “개인정보 처리방침”이란 이용자가 안심하고 서비스를 이용할 수 있도록 회사가 준수해야 할 지침을 의미하며,
+    카카오는 정보통신서비스제공자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호 규정, 가이드라인을 준수하여 개인정보 처리방침을 제공합니다.
+    카카오는 이용자의 동의를 기반으로 개인정보를 수집·이용 및 제공하고 있습니다. 이용자의 권리(개인정보 자기결정권)를 적극적으로 보장하기 위해 개인정보 처리방침을 알기 쉽게 제공할 수 있도록 다양한 노력을 기울이고 있으며, 이러한 노력의 일환으로 카카오의 주요 개인정보 처리 관련 정보를 라벨링으로 제공합니다..`,
   },
 ];

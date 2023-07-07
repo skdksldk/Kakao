@@ -39,7 +39,7 @@ export const Warning = styled.section`
   article {
     margin-top: 10px;
     padding: 20px;
-    background-color: #ffefe8;
+    background-color: #FFF8DC;
     border-radius: 5px;
   }
 `;

@@ -95,17 +95,14 @@ export const UploadProduct = () => {
           <article>
             - 너무 귀여운 사진은 심장이 아파올 수 있습니다.
             <br />
-            <br />- 유소년에게서 천자만홍이 피고 이상이 온갖 들어 약동하다.
-            이상의 가지에 사랑의 있는가? 주며, 끓는 힘차게 얼음이 얼음 가치를
-            황금시대의 있음으로써 사라지지 것이다. 이 뜨거운지라, 이상의 속에서
-            이것은 피가 보배를 황금시대의 싹이 사막이다.
+            <br />- Sometimes by losing a battle you find a new way to win the war.<br />
+            때로는 승부에서 패해봐야 이기는 방법을 알게 된다.
             <br />
-            <br />- 자신과 우는 옷을 지혜는 아니다. 더운지라 설레는 기쁘며,
-            위하여서, 평화스러운 광야에서 그리하였는가? 소담스러운 위하여
-            인도하겠다는 어디 무엇을 이상을 같지 따뜻한 청춘 칼이다.
+            <br />- I only have the power of persuasion.
+            나의 가장 큰 장점은 상대를 설득하는 능력이다.
             <br />
-            <br />- 가치를 그들을 예수는 찬미를 가슴이 과실이 이것이다. 희망의
-            것이다.보라, 풍부하게 이것은 황금시대를 얼마나 인간에 돋고,
+            <br />- What separates the winners from the losers is how a person reacts to each new twist of fate.<br />
+            승자와 패자의 차이는 무엇인가. 운명을 갈라놓을 주요 고비에서 어떻게 반응하느냐에 달려 있다.
             이것이다.
           </article>
         </Warning>
