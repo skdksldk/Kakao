@@ -14,7 +14,7 @@
 ### 🏃 구성원
 - Frontend<br/>
   - 김준수(React)
-  - 사용 기술 : `React`, `JavaScript`, `React Router`, `Styled Components`, `Ant Design`
+  - 사용 기술 : `React`, `JavaScript`, `React Router`, `Styled Components`, `Ant Design`, 'WebPack dev Server'
  
 ## 🔎 기능 설명
 
@@ -89,7 +89,7 @@
   
 ## 💡 카카오마켓을 코딩한 이유
 
-가천대 길병원과 서울 성모병원에서 배웠던 경험을 토대로 유사한 사이트 중에서도 카카오마켓이 병원에서 만든 프로젝트와 비슷한 스택과 구조로 만들수 있을 것 같아 선택했습니다.
+서울 성모병원에서 배웠던 경험을 토대로 유사한 사이트 중에서도 카카오마켓이 병원에서 만든 프로젝트와 비슷한 스택과 구조로 만들수 있을 것 같아 선택했습니다.
 
 ## 실행 방법
 
