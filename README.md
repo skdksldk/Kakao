@@ -14,7 +14,7 @@
 ### 🏃 구성원
 - Frontend<br/>
   - 김준수(React)
-  - 사용 기술 : `React`, `JavaScript`, `React Router`, `Styled Components`, `Ant Design`, 'WebPack dev Server'
+  - 사용 기술 : `React`, `JavaScript`, `React Router`, `Styled Components`, `Ant Design`,  `WebPack dev Server`
  
 ## 🔎 기능 설명
 
