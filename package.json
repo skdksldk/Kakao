@@ -43,9 +43,6 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
-   "engines": {
-    "node": ">=14.20.1"
-  },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0"
   }
